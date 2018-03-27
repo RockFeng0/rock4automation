@@ -1,0 +1,422 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Rock4.PcWpfTest模型及API &#8212; Rock4 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rock4 WebTest模型及API" href="rock4.WebTest用法.html" />
+    <link rel="prev" title="Rock4.PcMfcTest模型及API" href="rock4.PcMfcTest用法.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rock4-pcwpftestapi">
+<h1>Rock4.PcWpfTest模型及API<a class="headerlink" href="#rock4-pcwpftestapi" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pcwpftest-actions-api">
+<h2>1 PcWpfTest Actions API<a class="headerlink" href="#pcwpftest-actions-api" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p class="first">全局参数</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>操作(Actions API)</dt>
+<dd><p class="first">带有【窗口】标记的，要配合全局参数使用</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="29%" />
+<col width="27%" />
+<col width="13%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Actions API</th>
+<th class="head">参数</th>
+<th class="head">返回值</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Check</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>点击复选框【窗口】</td>
+</tr>
+<tr class="row-odd"><td>CheckOff</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>不勾选复选框【窗口】</td>
+</tr>
+<tr class="row-even"><td>CheckOn</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>勾选复选框【窗口】</td>
+</tr>
+<tr class="row-odd"><td>ClickWin</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>点击【窗口】的按钮</td>
+</tr>
+<tr class="row-even"><td>CloseWin</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>关闭指定【窗口】</td>
+</tr>
+<tr class="row-odd"><td>ExpandOff</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>关闭组合框【窗口】</td>
+</tr>
+<tr class="row-even"><td>ExpandOn</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>展开组合框【窗口】</td>
+</tr>
+<tr class="row-odd"><td>GetTextDocumentAttribute</td>
+<td>attr</td>
+<td>&#160;</td>
+<td>获取文本组件的指定
+的attr属性值【窗口】</td>
+</tr>
+<tr class="row-even"><td>SwitchToWindow</td>
+<td>win_title_name</td>
+<td>&#160;</td>
+<td>所有焦点切换到指定
+window标题的【窗口】</td>
+</tr>
+<tr class="row-odd"><td>SwitchToDefaultWindow</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>切换回默认【窗口】</td>
+</tr>
+<tr class="row-even"><td>ScrollTo</td>
+<td>Horizon=-1,
+vertical=-1</td>
+<td>&#160;</td>
+<td>滚动滚动条至指定位
+置【窗口】取值0至100</td>
+</tr>
+<tr class="row-odd"><td>SelectItem</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>展开组合框后或列表框
+选择指定选项【窗口】</td>
+</tr>
+<tr class="row-even"><td>SetWinStat</td>
+<td>value-&gt;min/max/normal</td>
+<td>&#160;</td>
+<td>设置窗口状态【窗口】</td>
+</tr>
+<tr class="row-odd"><td>StartAppliaction</td>
+<td>app_path</td>
+<td>&#160;</td>
+<td>打开指定应用</td>
+</tr>
+<tr class="row-even"><td>TimeSleep</td>
+<td>seconds</td>
+<td>&#160;</td>
+<td>睡眠</td>
+</tr>
+<tr class="row-odd"><td>TypeInWin</td>
+<td>value</td>
+<td>&#160;</td>
+<td>输入【窗口】</td>
+</tr>
+<tr class="row-even"><td>SetVar</td>
+<td>name ,value</td>
+<td>&#160;</td>
+<td>设置变量</td>
+</tr>
+<tr class="row-odd"><td>IsContentElement</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否容器类【窗口】</td>
+</tr>
+<tr class="row-even"><td>IsControlElement</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否控制类【窗口】</td>
+</tr>
+<tr class="row-odd"><td>IsEnabled</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否可控【窗口】</td>
+</tr>
+<tr class="row-even"><td>IsExists</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否存在【窗口】</td>
+</tr>
+<tr class="row-odd"><td>IsKeyboardFocusable</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否键盘焦点【窗口】</td>
+</tr>
+<tr class="row-even"><td>IsOffscreen</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否超出屏幕【窗口】</td>
+</tr>
+<tr class="row-odd"><td>IsPassword</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否密码【窗口】</td>
+</tr>
+<tr class="row-even"><td>MouseDrag</td>
+<td>X1,Y1,X2,Y2</td>
+<td>&#160;</td>
+<td>鼠标拖拽坐标1
+至坐标2【窗口】</td>
+</tr>
+<tr class="row-odd"><td>MouseDoubleClick</td>
+<td>X,Y</td>
+<td>&#160;</td>
+<td>鼠标双击x,y或者
+元素【窗口】</td>
+</tr>
+<tr class="row-even"><td>MouseClick</td>
+<td>X,Y</td>
+<td>&#160;</td>
+<td>左键点击x,y
+或者元素【窗口】</td>
+</tr>
+<tr class="row-odd"><td>MousePressButton</td>
+<td>X,Y</td>
+<td>&#160;</td>
+<td>鼠标按住元素【窗口】
+如果指定了x,y坐标
+那么按住x,y</td>
+</tr>
+<tr class="row-even"><td>MouseMove</td>
+<td>X，Y</td>
+<td>&#160;</td>
+<td>光标移动至【窗口】
+如果指定了x,y坐标
+那么移动至x,y</td>
+</tr>
+<tr class="row-odd"><td>MouseDragTo</td>
+<td>X,Y</td>
+<td>&#160;</td>
+<td>拖拽至坐标【窗口】</td>
+</tr>
+<tr class="row-even"><td>AcceleratorKey</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-odd"><td>AccessKey</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-even"><td>AutomationId</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-odd"><td>BoundingRectangle</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-even"><td>ClassName</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-odd"><td>ClickablePoint</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-even"><td>ControlType</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-odd"><td>Culture</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-even"><td>HasKeyboardFocus</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-odd"><td>HelpText</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-even"><td>LabeledBy</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-odd"><td>LocalizedControlType</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-even"><td>Name</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-odd"><td>ProcessId</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+<tr class="row-even"><td>RuntimeId</td>
+<td>&#160;</td>
+<td>string</td>
+<td>(模型不适用)获取该值</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</li>
+<li><p class="first">PcWfpTest只有Remote模式,使用Send进行,示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">PcWpfTest</span>
+<span class="n">PcWpfTest</span><span class="p">()</span><span class="o">.</span><span class="n">find_driver</span><span class="p">()</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;StartApplication&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;D:\auto\pc_install\npp.5.7.Installer.exe&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="pcwpftest">
+<h2>2 PcWpfTest 模型<a class="headerlink" href="#pcwpftest" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">yaml实例,源码:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">target</span><span class="p">,</span><span class="n">shoot</span><span class="p">,</span><span class="n">PcWpfTest</span>
+
+<span class="n">target</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">proj_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\env\testProject&#39;</span><span class="p">,</span> <span class="n">initdirs</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">case_detail</span><span class="p">(</span><span class="n">devdriver</span><span class="p">):</span>
+    <span class="n">shoot</span><span class="p">(</span><span class="n">devdriver</span> <span class="o">=</span> <span class="n">devdriver</span><span class="p">,</span><span class="n">modelfile</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\env\testProject\testcase\pc_wpf_yaml_usage.yaml&#39;</span><span class="p">,</span><span class="n">modeltype</span><span class="o">=</span><span class="s2">&quot;pcwpf&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">PcWpfTest</span><span class="p">()</span>
+    <span class="n">test</span><span class="o">.</span><span class="n">run_model_case</span><span class="p">(</span><span class="n">case_detail</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">excel实例,源码:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">rock4.common</span> <span class="k">import</span> <span class="n">p_common</span><span class="p">,</span><span class="n">p_env</span>
+<span class="kn">from</span> <span class="nn">rock4.softtest.common.ModelEntrance</span> <span class="k">import</span> <span class="n">test_start</span>
+<span class="kn">from</span> <span class="nn">rock4.softtest.pc.uiwpf.TestDriver</span> <span class="k">import</span> <span class="n">TestDriver</span>
+
+<span class="k">def</span> <span class="nf">case_detail</span><span class="p">(</span><span class="n">devdriver</span><span class="p">):</span>
+    <span class="n">test_start</span><span class="p">(</span><span class="n">devdriver</span> <span class="o">=</span> <span class="n">devdriver</span><span class="p">,</span><span class="n">modelfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p_env</span><span class="o">.</span><span class="n">CASE_PKG_PATH</span><span class="p">,</span> <span class="s1">&#39;pc_wpf_excel_usage.xlsx&#39;</span><span class="p">),</span><span class="n">modeltype</span><span class="o">=</span><span class="s2">&quot;pcwpf&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">proj_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\env\testProject&#39;</span>
+    <span class="n">p_common</span><span class="o">.</span><span class="n">init_project_env</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">proj_path</span> <span class="o">=</span> <span class="n">proj_path</span><span class="p">,</span> <span class="n">initdirs</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">TestDriver</span><span class="p">()</span>
+    <span class="n">test</span><span class="o">.</span><span class="n">run_model_case</span><span class="p">(</span><span class="n">case_detail</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Rock4.PcWpfTest模型及API</a><ul>
+<li><a class="reference internal" href="#pcwpftest-actions-api">1 PcWpfTest Actions API</a></li>
+<li><a class="reference internal" href="#pcwpftest">2 PcWpfTest 模型</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="rock4.PcMfcTest用法.html" title="previous chapter">Rock4.PcMfcTest模型及API</a></li>
+      <li>Next: <a href="rock4.WebTest用法.html" title="next chapter">Rock4 WebTest模型及API</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/rock4/rock4.PcWpfTest用法.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, 罗科峰 lkf20031988@163.com.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/rock4/rock4.PcWpfTest用法.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

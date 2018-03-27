@@ -1,0 +1,816 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Rock4用法简介 &#8212; Rock4 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rock4.PacketTest模型及API" href="rock4.PacketTest用法.html" />
+    <link rel="prev" title="Rock4指南" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rock4">
+<h1>Rock4用法简介<a class="headerlink" href="#rock4" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>1 安装<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>下载rock4的zip包，解压后执行: python setup_egg.py install</p>
+<p>依赖:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">appium</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">client</span><span class="o">&gt;=</span><span class="mf">0.11</span>
+<span class="n">autoitpy</span><span class="o">==</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">beautifulsoup4</span><span class="o">&gt;=</span><span class="mf">4.5</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">selenium</span><span class="o">&gt;=</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">2</span>
+<span class="n">xlrd</span><span class="o">&gt;=</span><span class="mf">0.9</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">PyYAML</span><span class="o">&gt;=</span><span class="mf">3.12</span>
+<span class="n">requests</span><span class="o">&gt;=</span><span class="mf">2.13</span><span class="o">.</span><span class="mi">0</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h2>2 入门指南<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="local-webtest">
+<h3>2.1 Local WebTest<a class="headerlink" href="#local-webtest" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic">
+<li><dl class="first docutils">
+<dt>用途</dt>
+<dd><p class="first last">UI层面，测试浏览器的应用，单机部署</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">WebTest</span>
+<span class="n">test</span> <span class="o">=</span>  <span class="n">WebTest</span><span class="p">(</span><span class="n">browser</span> <span class="o">=</span> <span class="s2">&quot;chrome&quot;</span><span class="p">)</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">find_driver</span><span class="p">()</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.baidu.com&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>示例详解</dt>
+<dd><ul class="first last">
+<li><p class="first">rock4.WebTest是rock4.softtest.web.TestDriver.TestDriver的别名，封装了所有selenium.webdriver本地浏览器Driver的实现:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">WebTest</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">然后, web测试实例化,目前支持WebDriver实现Firefox、Chrome浏览器和远程:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">WebTest 默认的服务器参数: hub_ip=&quot;localhost&quot;, hub_port=4444</span>
+<span class="sd">本地调用, WebTest的参数:</span>
+<span class="sd">    browser:    firefox or chrome</span>
+<span class="sd">    download_path:    设置浏览器(firefox, chrome)，文件下载的路径</span>
+<span class="sd">    marionette:       True / False, use firefox browser version 47.0.1 or greater if True</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">WebTest</span><span class="p">(</span><span class="n">browser</span> <span class="o">=</span> <span class="s2">&quot;chrome&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>搜寻web测试的驱动</dt>
+<dd><ul class="first last">
+<li><p class="first">find_driver 与 find_drivers  优先驱动 Remote driver, 如果没有Local driver，启动本地驱动;</p>
+</li>
+<li><p class="first">find_driver 返回第一个driver; find_drivers 返回dict:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">find_driver</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回的 driver 是 selenium 对象,get和quit都是selenium的函数:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.baidu.com&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="remote-webtest">
+<h3>2.2 Remote WebTest<a class="headerlink" href="#remote-webtest" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic">
+<li><dl class="first docutils">
+<dt>用途</dt>
+<dd><p class="first last">UI层面，测试浏览器的应用，单机部署及分布式部署</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">WebTest</span><span class="p">,</span><span class="n">Grid</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">()</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">start_hub</span><span class="p">(</span><span class="n">port</span> <span class="o">=</span> <span class="mi">4444</span><span class="p">,</span> <span class="n">block</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">start_node</span><span class="p">(</span><span class="mi">5555</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">test</span> <span class="o">=</span> <span class="n">WebTest</span><span class="p">()</span>
+<span class="n">drivers</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">find_drivers</span><span class="p">()</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">drivers</span><span class="o">.</span><span class="n">items</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.baidu.com&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+
+<span class="n">grid</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>示例详解</dt>
+<dd><ul class="first last">
+<li><p class="first">rock4.Grid是rock4.softtest.web.TestDriver.SelRemote的别名，封装了所有selenium.webdriver.Remote的实现:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">WebTest</span><span class="p">,</span><span class="n">Grid</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">然后, 实例化Grid, 用于分布式的web测试，实际上就是对 selenium-server.jar的二次封装:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">start_hub用于启动 remote server端:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#port 默认是 4444端口; block 默认是True, False时,jar命令不会阻塞</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">start_hub</span><span class="p">(</span><span class="n">port</span> <span class="o">=</span> <span class="mi">4444</span><span class="p">,</span> <span class="n">block</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">start_node用于启动client端与serverd端的连接:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># 5555是指client开启的port; block 默认是True, False时,jar命令不会阻塞;</span>
+<span class="c1"># hub_ip 默认连接服务器是localhost; hub_port 默认连接服务器的端口是4444;</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">start_node</span><span class="p">(</span><span class="mi">5555</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">然后, web测试实例化,目前支持WebDriver实现Firefox、Chrome浏览器和远程:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">WebTest 默认的服务器参数: hub_ip=&quot;localhost&quot;, hub_port=4444</span>
+<span class="sd">远程调用, WebTest的参数:</span>
+<span class="sd">    browsers:      浏览器列表，仅支持(firefox, chrome)两种类型，用于一对一的驱动client的浏览器</span>
+<span class="sd">    patch_with:    补白的浏览器，用于browsers少于client的数量时启动的浏览器，默认是firefox</span>
+<span class="sd">    marionette:    True / False, 默认False; Firefox version &gt;= 47.0.1时，需要设置为True,使用firefox的webdriver</span>
+<span class="sd">    download_path:    设置浏览器(firefox, chrome)，文件下载的路径</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">WebTest</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>搜寻web测试的驱动和使用driver</dt>
+<dd><p class="first">find_drivers 返回dict; 格式: {command_executor：driver}; 这里的示例，使用了第一个driver:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">drivers</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">find_drivers</span><span class="p">()</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">drivers</span><span class="o">.</span><span class="n">items</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.baidu.com&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>最后，关闭服务器(kill java.exe  for windows)</dt>
+<dd><p class="first last">grid.stop()</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="pcwpftest">
+<h3>2.3 PcWpfTest<a class="headerlink" href="#pcwpftest" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic">
+<li><dl class="first docutils">
+<dt>用途</dt>
+<dd><p class="first last">UI层面，测试WPF及MFC客户端的应用，单机部署(远程调用)</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">PcWpfTest</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">PcWpfTest</span><span class="p">()</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">find_driver</span><span class="p">()</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;StartApplication&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;D:\auto\pc_install\npp.5.7.Installer.exe&#39;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;MouseDragTo&quot;</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="n">AutomationId</span> <span class="o">=</span> <span class="s2">&quot;TitleBar&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;MouseMove&quot;</span><span class="p">,</span> <span class="mi">1056</span><span class="p">,</span> <span class="mi">574</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;ClickablePoint&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="s2">&quot;Cancel&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;ClickWin&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="s2">&quot;OK&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;SwitchToWindow&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++ v5.7 安装&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;ClickWin&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;下一步(N) &gt;&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;ClickWin&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;我接受(I)&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;TypeInWin&quot;</span><span class="p">,</span> <span class="sa">ur</span><span class="s2">&quot;d:\hello input&quot;</span><span class="p">,</span> <span class="n">AutomationId</span> <span class="o">=</span> <span class="s2">&quot;1019&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;ClickWin&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;下一步(N) &gt;&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;ClickWin&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;取消(C)&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;SwitchToDefaultWindow&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;MouseClick&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;是(Y)&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>示例详解</dt>
+<dd><ul class="first last">
+<li><p class="first">rock4.PcWpfTest是rock4.softtest.pc.uiwpf.TestDriver.TestDriver的别名，封装了uiwpfdriver3.0以上版本的命令:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">PcWpfTest</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">然后, 实例化PcWpfTest:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">PcWpfTest</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>搜寻PcWpf测试的驱动</dt>
+<dd><ul class="first last">
+<li><p class="first">PcWpfTest只有远程调用的模式, 服务端uiwpfdriver.exe监听127.0.0.1:5820</p>
+</li>
+<li><p class="first">find_driver 返回第一个driver; find_drivers 返回dict; 他们都会启用服务端进程:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">find_driver</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回的driver是uiwpfdriver的请求对象:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># send发送请求，格式: send(action, *args, **kwargs)</span>
+<span class="c1"># 远程调用action(*args, **kwargs)</span>
+<span class="c1"># args是action的参数; kwargs是UI的属性键值对, 用于识别UI;</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;StartApplication&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;D:\auto\pc_install\npp.5.7.Installer.exe&#39;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;MouseDragTo&quot;</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="n">AutomationId</span> <span class="o">=</span> <span class="s2">&quot;TitleBar&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;MouseMove&quot;</span><span class="p">,</span> <span class="mi">1056</span><span class="p">,</span> <span class="mi">574</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;ClickablePoint&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="s2">&quot;Cancel&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;ClickWin&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="s2">&quot;OK&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;SwitchToWindow&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++ v5.7 安装&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;ClickWin&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;下一步(N) &gt;&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;ClickWin&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;我接受(I)&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;TypeInWin&quot;</span><span class="p">,</span> <span class="sa">ur</span><span class="s2">&quot;d:\hello input&quot;</span><span class="p">,</span> <span class="n">AutomationId</span> <span class="o">=</span> <span class="s2">&quot;1019&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;ClickWin&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;下一步(N) &gt;&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;ClickWin&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;取消(C)&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;SwitchToDefaultWindow&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;MouseClick&quot;</span><span class="p">,</span><span class="n">Name</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;是(Y)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">最后,退出关闭服务器:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="pcmfctest">
+<h3>2.4 PcMfcTest<a class="headerlink" href="#pcmfctest" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic">
+<li><dl class="first docutils">
+<dt>用途</dt>
+<dd><p class="first last">UI层面，测试MFC客户端的应用，单机部署(本地调用)</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">PcMfcTest</span>
+<span class="kn">import</span> <span class="nn">time</span><span class="o">,</span><span class="nn">subprocess</span>
+
+<span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="sa">r</span><span class="s2">&quot;D:\auto\pc_install\npp.5.7.Installer.exe&quot;</span><span class="p">])</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">PcMfcTest</span><span class="p">()</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">find_driver</span><span class="p">()</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;Opt&quot;</span><span class="p">,</span><span class="s2">&quot;WinTitleMatchMode&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;WinActivate&quot;</span><span class="p">,</span><span class="s2">&quot;Installer Language&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Installer Language&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;OK&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="sa">u</span><span class="s2">&quot;下一步(&amp;N) &gt;&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="sa">u</span><span class="s2">&quot;我接受(&amp;I)&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;[ID:1019;class:Button]&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlSend&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;[ID:1019;class:Button]&quot;</span><span class="p">,</span><span class="s2">&quot;</span><span class="si">{END}</span><span class="s2">+</span><span class="si">{HOME}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlSend&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;[ID:1019;class:Button]&quot;</span><span class="p">,</span><span class="sa">ur</span><span class="s2">&quot;d:\hello input&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="sa">u</span><span class="s2">&quot;下一步(&amp;N) &gt;&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="sa">u</span><span class="s2">&quot;取消(&amp;C)&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;[ID:6]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>示例详解</dt>
+<dd><ul class="first last">
+<li><p class="first">rock4.PcMfcTest是rock4.softtest.pc.uimfc.TestDriver.TestDriver的别名，封装了autoit_py.autoit.WinMFCDriver的实现:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">PcMfcTest</span>
+<span class="kn">import</span> <span class="nn">time</span><span class="o">,</span><span class="nn">subprocess</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">然后, 实例化PcMfcTest:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">PcMfcTest</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>搜寻PcMfc测试的驱动</dt>
+<dd><ul class="first last">
+<li><p class="first">PcMfcTest只有本地调用的模式</p>
+</li>
+<li><p class="first">find_driver 返回第一个driver; find_drivers 返回dict:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">find_driver</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回的 driver 是 autoit COM的对象:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;Opt&quot;</span><span class="p">,</span><span class="s2">&quot;WinTitleMatchMode&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;WinActivate&quot;</span><span class="p">,</span><span class="s2">&quot;Installer Language&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Installer Language&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;OK&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="sa">u</span><span class="s2">&quot;下一步(&amp;N) &gt;&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="sa">u</span><span class="s2">&quot;我接受(&amp;I)&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;[ID:1019;class:Button]&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlSend&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;[ID:1019;class:Button]&quot;</span><span class="p">,</span><span class="s2">&quot;</span><span class="si">{END}</span><span class="s2">+</span><span class="si">{HOME}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlSend&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;[ID:1019;class:Button]&quot;</span><span class="p">,</span><span class="sa">ur</span><span class="s2">&quot;d:\hello input&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="sa">u</span><span class="s2">&quot;下一步(&amp;N) &gt;&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="sa">u</span><span class="s2">&quot;取消(&amp;C)&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ControlClick&quot;</span><span class="p">,</span><span class="s2">&quot;Notepad++&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;[ID:6]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="padtest">
+<h3>2.5 PadTest<a class="headerlink" href="#padtest" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic">
+<li><dl class="first docutils">
+<dt>用途</dt>
+<dd><p class="first last">UI层面，测试PAD移动端的应用，分布式部署(远程调用)</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">PadTest</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">PadTest</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;D:\auto\python\app-autoApp\demoProject\apps\ApiDemos\ApiDemos-debug.apk&#39;</span><span class="p">)</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">find_driver</span><span class="p">(</span><span class="s1">&#39;127.0.0.1:6555&#39;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s2">&quot;NFC&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+<span class="n">test</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>示例详解</dt>
+<dd><ul class="first last">
+<li><p class="first">rock4.PadTest是rock4.softtest.pad.uiappium.TestDriver.TestDriver的别名，封装了appium的实现:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">PadTest</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>然后, 实例化PadTest</dt>
+<dd><ul class="first last">
+<li><p class="first">实例化的过程中,会为每一台开启了debug模式并且已连接至电脑的pad设备,创建一个appium server;</p>
+</li>
+<li><p class="first">监听的端口默认是4725,每增加一台,server端口自增1;</p>
+</li>
+<li><p class="first">设备最多20台,保证设备在20台以内;</p>
+</li>
+<li><p class="first">实例化,传入待测试的apk路径:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">PadTest</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;D:\auto\python\app-autoApp\demoProject\apps\ApiDemos\ApiDemos-debug.apk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>搜寻PadTest测试的驱动</dt>
+<dd><ul class="first last">
+<li><p class="first">find_driver 返回传入deviceid,返回相应的driver;</p>
+</li>
+<li><p class="first">find_drivers 返回device与driver的字典;</p>
+</li>
+<li><p class="first">find_driver与find_drivers,都会连接至所有已创建了appium server的设备,通过deviceid获取相应driver:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">find_driver</span><span class="p">(</span><span class="s1">&#39;127.0.0.1:6555&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回的 driver 是 appium的对象,设备的执行是异步的:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s2">&quot;NFC&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">最后,退出关闭,所有服务器:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="packettest">
+<h3>2.6 PacketTest<a class="headerlink" href="#packettest" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic">
+<li><dl class="first docutils">
+<dt>用途</dt>
+<dd><p class="first last">API接口层面，测试web services模拟请求</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">PacketTest</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">PacketTest</span><span class="p">()</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">find_driver</span><span class="p">()</span>
+<span class="n">resp</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.baidu.com&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>示例详解</dt>
+<dd><ul class="first last">
+<li><p class="first">rock4.PacketTest是rock4.softtest.api.webservice.irequests.TestDriver.TestDriver的别名，依据requests实现:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">PacketTest</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">然后, 实例化PacketTest:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">PacketTest</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>搜寻Packet测试的驱动</dt>
+<dd><ul class="first last">
+<li><p class="first">find_driver 返回第一个driver; find_drivers 返回dict:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">find_driver</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">返回的 driver 是 requests module:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">resp</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.baidu.com&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>3 数据模型指南<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>3.1 数据模型的字段设计<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul>
+<li><p class="first">数据字段</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">字段</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>TestCaseID</td>
+<td>测试用例编号，具备唯一性</td>
+</tr>
+<tr class="row-odd"><td>Description</td>
+<td>用例描述,用于定义用例名称和描述用例</td>
+</tr>
+<tr class="row-even"><td>PreCommand</td>
+<td>前置操作步骤,即在行Steps前执行的步骤</td>
+</tr>
+<tr class="row-odd"><td>Steps</td>
+<td>测试的操作步骤,按顺序执行</td>
+</tr>
+<tr class="row-even"><td>PostCommand</td>
+<td>后置操作步骤</td>
+</tr>
+<tr class="row-odd"><td>Verify</td>
+<td>用例最后的验证操作</td>
+</tr>
+<tr class="row-even"><td>Head</td>
+<td>WebService的报文头</td>
+</tr>
+<tr class="row-odd"><td>Data</td>
+<td>WebService的数据报文</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">执行字段的执行顺序</p>
+<blockquote>
+<div><p>precommand-&gt;steps-&gt;postcommand-&gt;verify</p>
+</div></blockquote>
+</li>
+<li><p class="first">数据模型的类型</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Excel数据模型</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">默认使用 Excel中sheet名称为TestCase的工作薄</p>
+</li>
+<li><p class="first">Excel第一行为标题行,设置为数据字段相应的值</p>
+</li>
+<li><p class="first">Excel第二行开始为测试用例,每一个excel行,为一条用例,按顺序执行</p>
+</li>
+<li><p class="first">执行的字段相应列的每个单元格内,每一个单元格行,为一个步骤,按顺序执行</p>
+</li>
+<li><p class="first">图例:</p>
+<blockquote>
+<div><img alt="../_images/excel_sample.png" src="../_images/excel_sample.png" />
+</div></blockquote>
+</li>
+</ol>
+<p><em>用例的内在组织,采用列表嵌套字典的方式</em></p>
+</div></blockquote>
+</li>
+<li><p class="first">Yaml数据模型</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Yaml使用中文编码（ANSI格式）</p>
+</li>
+<li><p class="first">执行的字段相应值,使用yaml中的序列格式表示,按序列顺序执行</p>
+</li>
+<li><p class="first">图例一:</p>
+<blockquote>
+<div><img alt="../_images/yaml_sample1.png" src="../_images/yaml_sample1.png" />
+</div></blockquote>
+</li>
+<li><p class="first">图例二:</p>
+<blockquote>
+<div><img alt="../_images/yaml_sample2.png" src="../_images/yaml_sample2.png" />
+</div></blockquote>
+</li>
+</ol>
+<p><em>用例的内在组织,采用列表嵌套字典的方式</em></p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">关键字模型</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>-格式</dt>
+<dd><p class="first last">采用函数的模式,如 SetVar(&quot;url&quot;,&quot;www.baidu.com&quot;)</p>
+</dd>
+<dt>-例外</dt>
+<dd><p class="first last">进阶指南中,除了被描述为(模型不适用)的API外, 大部分API,是支持关键字的使用</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>具体关键字及API</dt>
+<dd><strong>参见进阶指南</strong></dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id5">
+<h3>3.1 数据模型的运行<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">目的</p>
+<p>将Yaml或者Excel的数据模型的关键字数据,依据其执行顺序,组织为测试项目的执行用例,然后,完成测试并输出测试报告</p>
+</li>
+<li><p class="first">简单示例,test.py源码:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">target</span><span class="p">,</span><span class="n">shoot</span><span class="p">,</span><span class="n">PcWpfTest</span>
+<span class="n">target</span><span class="p">(</span><span class="s2">&quot;ATest&quot;</span><span class="p">,</span> <span class="n">proj_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\testProject&#39;</span><span class="p">,</span> <span class="n">initdirs</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">devdriver</span><span class="p">):</span>
+    <span class="n">shoot</span><span class="p">(</span><span class="n">devdriver</span> <span class="o">=</span> <span class="n">devdriver</span><span class="p">,</span><span class="n">modelfile</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\env\testProject\testcase\pc_wpf_yaml_usage.yaml&#39;</span><span class="p">,</span><span class="n">modeltype</span><span class="o">=</span><span class="s2">&quot;pcwpf&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">PcWpfTest</span><span class="p">()</span>
+    <span class="n">test</span><span class="o">.</span><span class="n">run_model_case</span><span class="p">(</span><span class="n">case_detail</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>示例详解</dt>
+<dd><ul class="first last">
+<li><p class="first">引用target,shoot及测试客户端应用的PcWpfTest:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">target</span><span class="p">,</span><span class="n">shoot</span><span class="p">,</span><span class="n">PcWpfTest</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">然后, 初始化测试项目:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>target(&quot;ATest&quot;, proj_path = r&#39;D:\testProject&#39;, initdirs = True)
+
+- 第一个参数为项目主题,用于描述项目
+- proj_path --&gt;初始化项目的路径
+- initdirs  --&gt;若没有该项目目录，则创建项目目录结构
+</pre></div>
+</div>
+</li>
+<li><p class="first">创建测试回调函数:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>def test(devdriver):
+    shoot(devdriver = devdriver,modelfile = r&#39;D:\auto\env\testProject\testcase\pc_wpf_yaml_usage.yaml&#39;,modeltype=&quot;pcwpf&quot;)
+
+- 该函数test,仅带一个参数,用于传递driver
+- 该函数，仅仅调用shoot,shoot有四个参数: devdriver,modelfile,modeltype,debug
+- devdriver -&gt;字典类型,传递drivers
+- modelfile -&gt;传入模型文件
+- modeltype -&gt;模型文件采用的关键字类型; 共 5 个类型: pcwpf,pcmfc,web,pad,api
+</pre></div>
+</div>
+</li>
+<li><p class="first">依据关键字类型,实例化:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">PcWpfTest</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">实例化对象,调用回调函数,执行测试:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">run_model_case</span><span class="p">(</span><span class="n">case_detail</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>其他模型</dt>
+<dd><p class="first last"><strong>参见进阶指南</strong></p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Rock4用法简介</a><ul>
+<li><a class="reference internal" href="#id1">1 安装</a></li>
+<li><a class="reference internal" href="#id2">2 入门指南</a><ul>
+<li><a class="reference internal" href="#local-webtest">2.1 Local WebTest</a></li>
+<li><a class="reference internal" href="#remote-webtest">2.2 Remote WebTest</a></li>
+<li><a class="reference internal" href="#pcwpftest">2.3 PcWpfTest</a></li>
+<li><a class="reference internal" href="#pcmfctest">2.4 PcMfcTest</a></li>
+<li><a class="reference internal" href="#padtest">2.5 PadTest</a></li>
+<li><a class="reference internal" href="#packettest">2.6 PacketTest</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">3 数据模型指南</a><ul>
+<li><a class="reference internal" href="#id4">3.1 数据模型的字段设计</a></li>
+<li><a class="reference internal" href="#id5">3.1 数据模型的运行</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">Rock4指南</a></li>
+      <li>Next: <a href="rock4.PacketTest用法.html" title="next chapter">Rock4.PacketTest模型及API</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/rock4/rock4用法简介.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, 罗科峰 lkf20031988@163.com.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/rock4/rock4用法简介.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

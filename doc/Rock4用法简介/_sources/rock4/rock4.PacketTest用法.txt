@@ -1,0 +1,163 @@
+=========================
+Rock4.PacketTest模型及API
+=========================
+
+************************
+1 PacketTest Actions API
+************************
+    * WebHttp全局参数
+    
+        +--------+----------+-------------+
+        | 参数名 |   描述   |    值类型   |
+        +========+==========+=============+
+        | head   | 报文头   |   dict/json |
+        +--------+----------+-------------+
+        | data   | 数据报文 |   dict/josn |
+        +--------+----------+-------------+
+    
+    * 操作(Actions API)
+        
+        +---------------+-------------------------+----------+-----------------------------+
+        |   Actions API |       参数              |   返回值 |           描述              |
+        +===============+=========================+==========+=============================+
+        |Download       |url,dst,stream=0         |          |下载url指定资源至指定的      |
+        |               |                         |          |dst文件夹或者文件,stream默认0|
+        |               |                         |          |为1时,下载会阻塞直到结束     |
+        +---------------+-------------------------+----------+-----------------------------+
+        |DyJsonData     |name, sequence=[]        |          |动态参数化,resp返回json时,   |
+        |               |                         |          |依据sequence的序列截取键值   |
+        |               |                         |          |name为存储该值的变量         |
+        +---------------+-------------------------+----------+-----------------------------+
+        |DyStrData      |name,regx,index=0        |          |动态参数化,resp返回字符串时, |
+        |               |                         |          |依据regx正则表达式截取字符   |
+        |               |index指定截取索引        |          |name为存储该值的变量         |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GET            |url                      |          |向指定url发送get请求         |
+        +---------------+-------------------------+----------+-----------------------------+
+        |LoginAuth      |username,password,auth   |          |设置登录的认证，             |
+        |               |                         |          |auth为basic或者digest        |
+        +---------------+-------------------------+----------+-----------------------------+
+        |POST           |url,datatype="raw"       |          |向指定url发送post请求        |        
+        |               |                         |          |datatype为raw或者json        |
+        +---------------+-------------------------+----------+-----------------------------+
+        |SetVar         |name, value              |          |设置name变量存储value        |
+        +---------------+-------------------------+----------+-----------------------------+
+        |Upload         |url,files,**formdata     |          |上传files文件并提交formdate  |
+        |               |                         |          |至指定url                    |
+        |               |                         |          |                             |
+        +---------------+-------------------------+----------+-----------------------------+
+        |VerifyCode     |code                     |True/False|验证返回码                   |
+        +---------------+-------------------------+----------+-----------------------------+
+        |VerifyContain  |strs                     |True/False|验证返回字符串包含strs       |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetReqData     |                         |dict      |(模型不适用)获取请求的body   |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetReqHeaders  |                         |dict      |(模型不适用)获取请求的head   |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetReqMethod   |                         |string    |(模型不适用)获取请求的method |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetReqUrl      |                         |string    |(模型不适用)获取请求的method |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetRespCode    |                         |string    |(模型不适用)获取响应的返回码 |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetRespReason  |                         |string    |(模型不适用)获取响应的状态   |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetRespContent |                         |bytes     |(模型不适用)获取响应的body   |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetRespText    |                         |unicode   |(模型不适用)获取响应的body   |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetRespCookie  |                         |dict      |(模型不适用)获取响应的cookie |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetRespElapsed |                         |string    |(模型不适用)获取响应的耗时   |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetRespEncoding|                         |string    |(模型不适用)获取响应的编码   |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetRespHeaders |                         |dict      |(模型不适用)获取响应的head   |
+        +---------------+-------------------------+----------+-----------------------------+
+        |GetVar         |key                      |string    |(模型不适用)获取参数化的值   |
+        +---------------+-------------------------+----------+-----------------------------+
+        
+    
+    * 示例
+    
+        * Get::        
+            
+            from rock4.softtest.api.webservice.irequests.actions import WebHttp
+            WebHttp.GET("http://www.baidu.com")
+            print WebHttp.GetRespCode()
+        * Post::
+            
+            from rock4.softtest.api.webservice.irequests.actions import WebHttp
+            url = 'http://192.168.102.241:8003/manager/eeducation/BaseService'
+            head = {"Content-Type": "text/x-gwt-rpc; charset=utf-8","x-gwt-permutation": "9FE14770B4D552EFFB9CE5571ACACFDE"}
+            logindata = '7|0|18|http://192.168.102.241:8003/manager/eeducation/|A6B7631C6D018783FF117FDE78D1672B|com.tianwen.Base.client.service.BaseManagerService|doLogin|com.tianwen.Base.client.model.LoginModel/1269075523|com.extjs.gxt.ui.client.data.RpcMap/3441186752|userName|java.lang.String/2004016611|administrator|password|123456|orgId||checkCode|0000|locale|isFirstLogin|1|1|2|3|4|1|5|5|1|6|6|7|8|9|10|8|11|12|8|13|14|8|15|16|-5|17|8|18|'
+            
+            WebHttp.head = head
+            WebHttp.data = logindata
+            WebHttp.POST(url, datatype="raw")
+            
+            print "response text: ", WebHttp.GetRespText()
+            print 'response content: ', WebHttp.GetRespContent()
+            print "return code: ", WebHttp.GetRespCode()
+            print "return reason: ", WebHttp.GetRespReason()
+            print "response head: ", WebHttp.GetRespHeaders()    
+            print 'response elapsed: ', WebHttp.GetRespElapsed()
+            print 'response encoding: ', WebHttp.GetRespEncoding()
+            print 'cookies: ', WebHttp.GetRespCookie()
+        
+        * Upload::
+            
+            from rock4.softtest.api.webservice.irequests.actions import WebHttp
+            upload_url='http://localhost/httpUploadFile'
+            upload_file1 = r"d:\auto\buffer\test.xml"
+            upload_file2 = r"d:\auto\buffer\t.html"
+            WebHttp.Upload(upload_url, [upload_file1,upload_file2], dirType = 1, unzip = 0)
+            print WebHttp.GetRespCode()
+            
+        * Download::
+            
+            from rock4.softtest.api.webservice.irequests.actions import WebHttp
+            url = u'http://localhost/svn/文档/CCE-ECP环境自动安装工具使用手册.docx'
+            
+            WebHttp.LoginAuth("admini", "123456", "basic")       
+            WebHttp.Download(url, r'd:\auto\buffer', stream=True)
+            print WebHttp.GetRespCode(), WebHttp.GetRespReason()
+        
+        * Parameterization::
+            
+            from rock4.softtest.api.webservice.irequests.actions import WebHttp
+            WebHttp.SetVar("url", "http://www.baidu.com")
+            WebHttp.GET("#url#")
+            print WebHttp.GetRespCode()
+    
+*****************
+2 PacketTest 模型
+*****************
+
+#. yaml实例,源码::
+    
+    from rock4 import shoot,target,PacketTest
+
+    target("test", proj_path = r'D:\auto\env\testProject', initdirs = True)
+
+    def case_detail(devdriver):
+        shoot(devdriver = devdriver,modelfile = r'D:\auto\env\testProject\testcase\api_yaml_usage.yaml',modeltype="api")
+
+    if __name__ == "__main__":
+        test = PacketTest()
+        test.run_model_case(case_detail)
+        
+#. excel实例,源码::
+    
+    from rock4.common import p_common
+    from rock4.softtest.common.ModelEntrance import test_start
+    from rock4.softtest.api.webservice.irequests.TestDriver import TestDriver
+
+    p_common.init_project_env("test", proj_path = r'D:\auto\env\testProject', initdirs = True)
+
+    def case_detail(devdriver):
+        test_start(devdriver = devdriver,modelfile = r'D:\auto\env\testProject\testcase\api_excel_usage.xlsx',modeltype="api")
+
+    if __name__ == "__main__":
+        test = TestDriver()
+        test.run_model_case(case_detail)

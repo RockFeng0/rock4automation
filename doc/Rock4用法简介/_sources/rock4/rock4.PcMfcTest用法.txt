@@ -1,0 +1,126 @@
+========================
+Rock4.PcMfcTest模型及API
+========================
+
+***********************
+1 PcMfcTest Actions API
+***********************
+    * 全局参数
+    
+        +----------------+--------------+-----------------------------------------------+
+        |   参数名       |   描述       |         值或值类型                            |
+        +================+==============+===============================================+
+        | identifications| 属性键值对   |   title,id,text,classname,classnn,name,instanc|
+        |                |              |   其中title是window的标题，必须赋值           |
+        +----------------+--------------+-----------------------------------------------+
+        | timeout        | 超时时间     |   默认10秒                                    |
+        +----------------+--------------+-----------------------------------------------+
+    
+    * 操作(Actions API)
+        带有【窗口】标记的，要配合全局参数使用
+        
+        +------------------+-------------------------+----------+--------------------------+
+        |   Actions API    |       参数              |   返回值 |        描述              |
+        +==================+=========================+==========+==========================+
+        |ActivateWin       |                         |          |激活【窗口】              |
+        +------------------+-------------------------+----------+--------------------------+
+        |ClickDoubleXY     |x,y                      |          |左键双击x,y               |
+        +------------------+-------------------------+----------+--------------------------+
+        |ClickDrag         |x1,y1,x2,y2              |          |左键点击坐标1拖坐标2      |
+        +------------------+-------------------------+----------+--------------------------+
+        |ClickWin          |                         |          |点击【窗口】              |
+        +------------------+-------------------------+----------+--------------------------+
+        |ClickXY           |x,y                      |          |鼠标左键点击x,y           |
+        +------------------+-------------------------+----------+--------------------------+
+        |CloseWin          |                         |          |关闭【窗口】              |        
+        +------------------+-------------------------+----------+--------------------------+
+        |FindAndActivateWin|                         |          |寻找并激活【窗口】        |
+        +------------------+-------------------------+----------+--------------------------+
+        |IsActiveWin       |                         |True/False|是否激活【窗口】          |
+        +------------------+-------------------------+----------+--------------------------+
+        |IsExistsWin       |code                     |True/False|是否存在【窗口】          |
+        +------------------+-------------------------+----------+--------------------------+
+        |KillWin           |                         |          |结束【窗口】进程          |
+        +------------------+-------------------------+----------+--------------------------+
+        |MouseMove         |x,y                      |          |鼠标光标移动至x,y         |
+        +------------------+-------------------------+----------+--------------------------+
+        |RightClickXY      |x,y                      |          |鼠标右键点击x,y           |
+        +------------------+-------------------------+----------+--------------------------+
+        |SelectItem        |value                    |          |在【窗口】下拉框中        |
+        |                  |                         |          |选择指定value项           |
+        +------------------+-------------------------+----------+--------------------------+
+        |SetTitleOpt       |mode                     |          |设置【窗口】匹配模式      |
+        |                  |mode                     |          |mode为1-全匹配            |
+        |                  |mode                     |          |2-部分匹配(默认值)        |
+        +------------------+-------------------------+----------+--------------------------+
+        |SetVar            |name,value               |          |设置参数化                |
+        +------------------+-------------------------+----------+--------------------------+
+        |StartAppliaction  |exe_file_path            |string    |打开windows的应用程序     |
+        +------------------+-------------------------+----------+--------------------------+
+        |TimeSleep         |seconds                  |bytes     |睡眠                      |
+        +------------------+-------------------------+----------+--------------------------+
+        |TypeInWin         |text                     |unicode   |【窗口】输入文本          |
+        +------------------+-------------------------+----------+--------------------------+
+        |GetWinText        |                         |string    |(模型不适用)获取          |
+        |                  |                         |          |【窗口】的文本            |
+        +------------------+-------------------------+----------+--------------------------+
+        |GetWinCount       |                         |string    |(模型不适用)匹配的        |
+        |                  |                         |          |【窗口】的数量            |
+        +------------------+-------------------------+----------+--------------------------+
+        |GetVar            |key                      |string    |(模型不适用)获取参数化的值|
+        +------------------+-------------------------+----------+--------------------------+
+        
+
+    * 示例::
+        
+        from rock4.softtest.pc.uimfc.actions import MFCElement
+        app_path = r"F:\BaiduYunDownload\pcinstall\npp.5.7.Installer.exe"
+        MFCElement.StartAppliaction(app_path)    
+        MFCElement.SetTitleOpt(2)
+        MFCElement.identifications = {"Title" : "Installer Language"}
+        MFCElement.ActivateWin()
+        MFCElement.identifications = {"Title" : "Installer Language","text":"OK"}
+        MFCElement.ClickWin()
+        MFCElement.identifications = {"Title" : u"Notepad++ v5.7 安装","text":u"下一步(&N) >"}
+        MFCElement.ClickWin()
+        MFCElement.identifications = {"Title" : "Notepad++","text":u"我接受(&I)"}
+        MFCElement.ClickWin()
+        MFCElement.identifications = {"Title" : "Notepad++","ID":1019,"class":"Button"}
+        MFCElement.TypeInWin(ur"d:\hello input")
+        MFCElement.identifications = {"Title" : "Notepad++","text":u"下一步(&N) >"}
+        MFCElement.ClickWin()
+        MFCElement.identifications = {"Title" : "Notepad++","text":u"取消(&C)"}
+        MFCElement.ClickWin()
+        MFCElement.identifications = {"Title" : "Notepad++","id":6}
+        MFCElement.ClickWin()
+    
+****************
+2 PcMfcTest 模型
+****************
+
+#. yaml实例,源码::
+
+    from rock4 import shoot,target,PcMfcTest
+    target("test", proj_path = r'D:\auto\env\testProject', initdirs = True)
+
+    def case_detail(devdriver):
+        shoot(devdriver = devdriver,modelfile = r'D:\auto\env\testProject\testcase\pc_mfc_yaml_usage.yaml',modeltype="pcmfc")
+
+    if __name__ == "__main__":
+        test = PcMfcTest()
+        test.run_model_case(case_detail)
+
+#. excel实例,源码::
+    
+    from rock4.common import p_common
+    from rock4.softtest.common.ModelEntrance import test_start
+    from rock4.softtest.pc.uimfc.TestDriver import TestDriver
+
+    p_common.init_project_env("test", proj_path = r'D:\auto\env\testProject', initdirs = True)
+
+    def case_detail(devdriver):
+        test_start(devdriver = devdriver,modelfile = r'D:\auto\env\testProject\testcase\pc_mfc_excel_usage.xlsx',modeltype="pcmfc")
+
+    if __name__ == "__main__":
+        test = TestDriver()
+        test.run_model_case(case_detail)

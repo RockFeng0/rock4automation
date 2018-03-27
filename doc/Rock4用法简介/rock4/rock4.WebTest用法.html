@@ -1,0 +1,648 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Rock4 WebTest模型及API &#8212; Rock4 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Rock4.PcWpfTest模型及API" href="rock4.PcWpfTest用法.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rock4-webtestapi">
+<h1>Rock4 WebTest模型及API<a class="headerlink" href="#rock4-webtestapi" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="webtest-actions-api">
+<h2>1 WebTest Actions API<a class="headerlink" href="#webtest-actions-api" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p class="first">全局参数</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="23%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数名</th>
+<th class="head">描述</th>
+<th class="head">值或类型</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>by</td>
+<td>指定的寻找类型</td>
+<td>css/id/name/class/tagname/xpath/link/plink</td>
+</tr>
+<tr class="row-odd"><td>value</td>
+<td>寻找类型的值</td>
+<td>字符串</td>
+</tr>
+<tr class="row-even"><td>index</td>
+<td>索引,默认0</td>
+<td>数字</td>
+</tr>
+<tr class="row-odd"><td>timeout</td>
+<td>超时,默认10秒</td>
+<td>数字</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">浏览器操作(Actions API)</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="25%" />
+<col width="13%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Actions API</th>
+<th class="head">参数</th>
+<th class="head">返回值</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>AlertAccept</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>警告框-点击确认</td>
+</tr>
+<tr class="row-odd"><td>AlertDismiss</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>警告框-点击取消</td>
+</tr>
+<tr class="row-even"><td>AlertSendKeys</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>警告框-输入文字</td>
+</tr>
+<tr class="row-odd"><td>AlertTextHave</td>
+<td>text</td>
+<td>True/False</td>
+<td>判断警告框是否包含文本</td>
+</tr>
+<tr class="row-even"><td>Back</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>后退</td>
+</tr>
+<tr class="row-odd"><td>Forward</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>前进</td>
+</tr>
+<tr class="row-even"><td>Js</td>
+<td>script</td>
+<td>&#160;</td>
+<td>执行js脚本</td>
+</tr>
+<tr class="row-odd"><td>Maximize</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>浏览器最大化</td>
+</tr>
+<tr class="row-even"><td>NavigateTo</td>
+<td>url</td>
+<td>&#160;</td>
+<td>导航到指定url</td>
+</tr>
+<tr class="row-odd"><td>Refresh</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>刷新页面</td>
+</tr>
+<tr class="row-even"><td>ScreenShoot</td>
+<td>fpath</td>
+<td>&#160;</td>
+<td>截图到fpath指定的文件</td>
+</tr>
+<tr class="row-odd"><td>ScrollTo</td>
+<td>x,y</td>
+<td>&#160;</td>
+<td>滚动;左上(&quot;0&quot;,&quot;0&quot;)
+右下(&quot;10000&quot;,&quot;10000&quot;)</td>
+</tr>
+<tr class="row-even"><td>SwitchToDefaultFrame</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>切换到默认iframe</td>
+</tr>
+<tr class="row-odd"><td>SwitchToDefaultWindow</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>切换到默认窗口</td>
+</tr>
+<tr class="row-even"><td>SwitchToFrame</td>
+<td>framename</td>
+<td>&#160;</td>
+<td>切换到指定的iframe</td>
+</tr>
+<tr class="row-odd"><td>SwitchToNewPopWindow</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>切换到新的标签窗口</td>
+</tr>
+<tr class="row-even"><td>WebClose</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>关闭退出浏览器</td>
+</tr>
+<tr class="row-odd"><td>Init</td>
+<td>name,dp,
+marionette=False</td>
+<td>&#160;</td>
+<td>(模型不适用)初始化浏览器,name
+为firefox或chrome;dp设置下载
+路径;marionette默认False</td>
+</tr>
+<tr class="row-even"><td>Title</td>
+<td>&#160;</td>
+<td>字符串</td>
+<td>(模型不适用)获取页面标题</td>
+</tr>
+<tr class="row-odd"><td>URL</td>
+<td>&#160;</td>
+<td>字符串</td>
+<td>(模型不适用)获取页面URL</td>
+</tr>
+<tr class="row-even"><td>SetWindowSize</td>
+<td>width,height</td>
+<td>&#160;</td>
+<td>(模型不适用)设置浏览器大小</td>
+</tr>
+<tr class="row-odd"><td>SwitchToAlert</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>(模型不适用)切换到警告窗</td>
+</tr>
+<tr class="row-even"><td>IESkipCertError</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>(模型不适用)Skip IE SSL错误</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>页面UI操作(Actions API)</dt>
+<dd><p class="first">带有【元素】标记的，要配合全局参数使用</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="26%" />
+<col width="25%" />
+<col width="13%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Actions API</th>
+<th class="head">参数</th>
+<th class="head">返回值</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Click</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>点击【元素】</td>
+</tr>
+<tr class="row-odd"><td>ClickText</td>
+<td>text</td>
+<td>&#160;</td>
+<td>遍历点击指定text的【元素】</td>
+</tr>
+<tr class="row-even"><td>ClickAndHold</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>按住【元素】</td>
+</tr>
+<tr class="row-odd"><td>DoubleClick</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>双击 【元素】</td>
+</tr>
+<tr class="row-even"><td>DoubleClickText</td>
+<td>text</td>
+<td>&#160;</td>
+<td>遍历双击指定text 【元素】</td>
+</tr>
+<tr class="row-odd"><td>EnhancedClick</td>
+<td>text</td>
+<td>&#160;</td>
+<td>加强点击,避免点击失效【元素】</td>
+</tr>
+<tr class="row-even"><td>GetFocus</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>获取并设置焦点至元素 【元素】</td>
+</tr>
+<tr class="row-odd"><td>IsEnabled</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否启用 【元素】</td>
+</tr>
+<tr class="row-even"><td>IsExist</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否存在 【元素】</td>
+</tr>
+<tr class="row-odd"><td>IsVisible</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否可见  【元素】</td>
+</tr>
+<tr class="row-even"><td>IsText</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否有文本【元素】</td>
+</tr>
+<tr class="row-odd"><td>MouseOver</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>鼠标悬浮至元素 【元素】</td>
+</tr>
+<tr class="row-even"><td>MoveAndDropTo</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>拖拽至 【元素】
+一般是:先按住,再拖,在释放</td>
+</tr>
+<tr class="row-odd"><td>ReleaseClick</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>释放元素【元素】</td>
+</tr>
+<tr class="row-even"><td>RightClick</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>右键点击 【元素】</td>
+</tr>
+<tr class="row-odd"><td>RightClickText</td>
+<td>text</td>
+<td>&#160;</td>
+<td>右键点击text【元素】</td>
+</tr>
+<tr class="row-even"><td>SetVar</td>
+<td>name,value</td>
+<td>&#160;</td>
+<td>设置变量</td>
+</tr>
+<tr class="row-odd"><td>TimeSleep</td>
+<td>seconds</td>
+<td>&#160;</td>
+<td>睡眠</td>
+</tr>
+<tr class="row-even"><td>TypeIn</td>
+<td>text</td>
+<td>&#160;</td>
+<td>输入文本text 【元素】</td>
+</tr>
+<tr class="row-odd"><td>Upload</td>
+<td>abs_file</td>
+<td>&#160;</td>
+<td>点击元素【元素】
+在上传对话框完成上传动作</td>
+</tr>
+<tr class="row-even"><td>UploadType</td>
+<td>abs_file</td>
+<td>&#160;</td>
+<td>页面原生上传标签中【元素】
+指定abs_file的上传文件</td>
+</tr>
+<tr class="row-odd"><td>Wait</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>依据超时时间，
+等待元素存在【元素】</td>
+</tr>
+<tr class="row-even"><td>WaitForAppearing</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>依据超时时间，
+等待元素出现【元素】</td>
+</tr>
+<tr class="row-odd"><td>WaitForDisappearing</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>依据超时时间,
+等待元素消失【元素】</td>
+</tr>
+<tr class="row-even"><td>WaitForVisible</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>依据超时时间，
+等待元素可见【元素】</td>
+</tr>
+<tr class="row-odd"><td>Alt</td>
+<td>key</td>
+<td>&#160;</td>
+<td>发送Alt+key 组合键至【元素】</td>
+</tr>
+<tr class="row-even"><td>Ctrl</td>
+<td>key</td>
+<td>&#160;</td>
+<td>发送Ctrl+key 组合键至【元素】</td>
+</tr>
+<tr class="row-odd"><td>Backspace</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>发送Backspace 【元素】</td>
+</tr>
+<tr class="row-even"><td>Enter</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>发送Enter键   【元素】</td>
+</tr>
+<tr class="row-odd"><td>Escape</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>发送Escape键  【元素】</td>
+</tr>
+<tr class="row-even"><td>Space</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>发送Space键  【元素】</td>
+</tr>
+<tr class="row-odd"><td>Tab</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>发送Tab键 【元素】</td>
+</tr>
+<tr class="row-even"><td>GetAttribute</td>
+<td>attr</td>
+<td>String</td>
+<td>(模型不适用)获取标签属性的值</td>
+</tr>
+<tr class="row-odd"><td>GetInnerHTML</td>
+<td>&#160;</td>
+<td>String</td>
+<td>(模型不适用)获取InnerHTML值</td>
+</tr>
+<tr class="row-even"><td>GetObjectsCount</td>
+<td>&#160;</td>
+<td>String</td>
+<td>(模型不适用)获取已找到的
+元素数量值</td>
+</tr>
+<tr class="row-odd"><td>GetPageHTML</td>
+<td>&#160;</td>
+<td>String</td>
+<td>(模型不适用)获取页面源码</td>
+</tr>
+<tr class="row-even"><td>GetText</td>
+<td>&#160;</td>
+<td>String</td>
+<td>(模型不适用)获取元素文本</td>
+</tr>
+<tr class="row-odd"><td>GetVar</td>
+<td>name</td>
+<td>String</td>
+<td>(模型不适用)获取参数的值</td>
+</tr>
+<tr class="row-even"><td>Select</td>
+<td>value</td>
+<td>&#160;</td>
+<td>(局限)选择value的元素</td>
+</tr>
+<tr class="row-odd"><td>SelectByOrder</td>
+<td>order</td>
+<td>&#160;</td>
+<td>(局限)依据索引order顺序
+选择元素</td>
+</tr>
+<tr class="row-even"><td>Set</td>
+<td>value</td>
+<td>&#160;</td>
+<td>(局限)输入value
+或者选择value的元素</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</li>
+<li><p class="first">示例</p>
+<blockquote>
+<div><ul>
+<li><p class="first">浏览器操作:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4.softtest.web.actions</span> <span class="k">import</span> <span class="n">WebBrowser</span>
+<span class="nb">print</span> <span class="s2">&quot;open firefox&quot;</span>
+<span class="n">WebBrowser</span><span class="o">.</span><span class="n">Init</span><span class="p">(</span><span class="s2">&quot;firefox&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s2">&quot;d:\auto\buffer&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="s2">&quot;navigate to www.baidu.com&quot;</span>
+<span class="n">WebBrowser</span><span class="o">.</span><span class="n">NavigateTo</span><span class="p">(</span><span class="s2">&quot;http://www.baidu.com&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="s2">&quot;refresh www.baidu.com&quot;</span>
+<span class="n">WebBrowser</span><span class="o">.</span><span class="n">Refresh</span><span class="p">()</span>
+<span class="n">WebBrowser</span><span class="o">.</span><span class="n">WebClose</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">页面UI操作:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">rock4.softtest.web.actions</span> <span class="k">import</span> <span class="n">WebBrowser</span><span class="p">,</span><span class="n">WebElement</span>
+<span class="n">WebBrowser</span><span class="o">.</span><span class="n">Init</span><span class="p">(</span><span class="s2">&quot;firefox&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s2">&quot;d:\auto\buffer&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="s2">&quot;navigate to knitterDemo&quot;</span>
+<span class="n">WebBrowser</span><span class="o">.</span><span class="n">NavigateTo</span><span class="p">(</span><span class="s2">&quot;http://sleepycat.org/static/knitter/KnitterDemo.html&quot;</span><span class="p">)</span>
+<span class="n">WebElement</span><span class="o">.</span><span class="n">by</span><span class="p">,</span> <span class="n">WebElement</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span>
+<span class="nb">print</span> <span class="s2">&quot;select box-test&quot;</span>
+<span class="n">WebElement</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="s2">&quot;Mrs.&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">WebElement</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="s2">&quot;Mr.&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">WebElement</span><span class="o">.</span><span class="n">SelectByOrder</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">WebElement</span><span class="o">.</span><span class="n">by</span><span class="p">,</span> <span class="n">WebElement</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;CSS_SELECTOR&quot;</span><span class="p">,</span> <span class="s2">&quot;#name&quot;</span>
+<span class="nb">print</span> <span class="s2">&quot;text box-test&quot;</span>
+<span class="n">WebElement</span><span class="o">.</span><span class="n">TypeIn</span><span class="p">(</span><span class="s2">&quot;Hello world! 1&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">WebElement</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="s2">&quot;Hello world! 2&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">WebElement</span><span class="o">.</span><span class="n">TypeIn</span><span class="p">(</span><span class="s2">&quot;Hello world! 3&quot;</span><span class="p">)</span>
+<span class="n">WebElement</span><span class="o">.</span><span class="n">GetFocus</span><span class="p">()</span>
+<span class="n">WebElement</span><span class="o">.</span><span class="n">TypeIn</span><span class="p">(</span><span class="s2">&quot;Hello world! 4&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="nb">print</span> <span class="s2">&quot;close firefox&quot;</span>
+<span class="n">WebBrowser</span><span class="o">.</span><span class="n">WebClose</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="webtest">
+<h2>2 WebTest 模型<a class="headerlink" href="#webtest" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">yaml实例,源码:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">target</span><span class="p">,</span><span class="n">shoot</span><span class="p">,</span><span class="n">WebTest</span><span class="p">,</span><span class="n">Grid</span>
+
+<span class="n">target</span><span class="p">(</span><span class="s2">&quot;web_excel_usage&quot;</span><span class="p">,</span> <span class="n">proj_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\env\testProject&#39;</span><span class="p">,</span> <span class="n">initdirs</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">case_detail</span><span class="p">(</span><span class="n">devdriver</span><span class="p">):</span>
+    <span class="n">shoot</span><span class="p">(</span><span class="n">devdriver</span> <span class="o">=</span> <span class="n">devdriver</span><span class="p">,</span><span class="n">modelfile</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\env\testProject\testcase\web_yaml_usage.yaml&#39;</span><span class="p">,</span><span class="n">modeltype</span><span class="o">=</span><span class="s2">&quot;web&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">local_web_test</span><span class="p">():</span>
+    <span class="c1"># defaultly will grab the remote host and connect them. if no remote host, local webdriver will be started</span>
+    <span class="k">return</span> <span class="n">WebTest</span><span class="p">(</span><span class="n">hub_ip</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">hub_port</span><span class="o">=</span><span class="mi">4444</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">remote_web_test</span><span class="p">():</span>
+    <span class="c1"># using block=False to start hub and node without block on the same PC</span>
+    <span class="n">Grid</span><span class="p">()</span><span class="o">.</span><span class="n">start_hub</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">Grid</span><span class="p">()</span><span class="o">.</span><span class="n">start_node</span><span class="p">(</span><span class="mi">5555</span><span class="p">,</span> <span class="n">hub_ip</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">hub_port</span><span class="o">=</span><span class="mi">4444</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">WebTest</span><span class="p">(</span><span class="n">hub_ip</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">hub_port</span><span class="o">=</span><span class="mi">4444</span><span class="p">,</span> <span class="n">browsers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;firefox&quot;</span><span class="p">,</span><span class="s2">&quot;chrome&quot;</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">remote_web_test2</span><span class="p">():</span>
+    <span class="c1"># defaultly will grab the remote host and connect them.</span>
+    <span class="k">return</span> <span class="n">WebTest</span><span class="p">(</span><span class="n">hub_ip</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">hub_port</span><span class="o">=</span><span class="mi">4444</span><span class="p">,</span> <span class="n">browsers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;firefox&quot;</span><span class="p">,</span><span class="s2">&quot;chrome&quot;</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">local_web_test</span><span class="p">()</span>
+<span class="c1">#     test = remote_web_test()</span>
+<span class="c1">#     test = remote_web_test2()</span>
+
+    <span class="k">if</span> <span class="n">test</span><span class="o">.</span><span class="n">is_server_running</span><span class="p">:</span>
+        <span class="n">test</span><span class="o">.</span><span class="n">run_model_case</span><span class="p">(</span><span class="n">case_detail</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">excel实例,源码:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4.common</span> <span class="k">import</span> <span class="n">p_common</span>
+<span class="kn">from</span> <span class="nn">rock4.softtest.common.ModelEntrance</span> <span class="k">import</span> <span class="n">test_start</span>
+<span class="kn">from</span> <span class="nn">rock4.softtest.web.TestDriver</span> <span class="k">import</span> <span class="n">TestDriver</span><span class="p">,</span><span class="n">SelRemote</span>
+
+<span class="n">p_common</span><span class="o">.</span><span class="n">init_project_env</span><span class="p">(</span><span class="s2">&quot;web_excel_usage&quot;</span><span class="p">,</span> <span class="n">proj_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\env\testProject&#39;</span><span class="p">,</span> <span class="n">initdirs</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">case_detail</span><span class="p">(</span><span class="n">devdriver</span><span class="p">):</span>
+    <span class="n">test_start</span><span class="p">(</span><span class="n">devdriver</span> <span class="o">=</span> <span class="n">devdriver</span><span class="p">,</span><span class="n">modelfile</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\env\testProject\testcase\web_excel_usage.xlsx&#39;</span><span class="p">,</span><span class="n">modeltype</span><span class="o">=</span><span class="s2">&quot;web&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">local_web_test</span><span class="p">():</span>
+    <span class="c1"># defaultly will grab the remote host and connect them. if no remote host, local webdriver will be started</span>
+    <span class="k">return</span> <span class="n">TestDriver</span><span class="p">(</span><span class="n">hub_ip</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">hub_port</span><span class="o">=</span><span class="mi">4444</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">remote_web_test</span><span class="p">():</span>
+    <span class="c1"># using block=False to start hub and node without block on the same PC</span>
+    <span class="n">SelRemote</span><span class="p">()</span><span class="o">.</span><span class="n">start_hub</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">SelRemote</span><span class="p">()</span><span class="o">.</span><span class="n">start_node</span><span class="p">(</span><span class="mi">5555</span><span class="p">,</span> <span class="n">hub_ip</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">hub_port</span><span class="o">=</span><span class="mi">4444</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">TestDriver</span><span class="p">(</span><span class="n">hub_ip</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">hub_port</span><span class="o">=</span><span class="mi">4444</span><span class="p">,</span> <span class="n">browsers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;firefox&quot;</span><span class="p">,</span><span class="s2">&quot;chrome&quot;</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">remote_web_test2</span><span class="p">():</span>
+    <span class="c1"># defaultly will grab the remote host and connect them.</span>
+    <span class="k">return</span> <span class="n">TestDriver</span><span class="p">(</span><span class="n">hub_ip</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">hub_port</span><span class="o">=</span><span class="mi">4444</span><span class="p">,</span> <span class="n">browsers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;firefox&quot;</span><span class="p">,</span><span class="s2">&quot;chrome&quot;</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">local_web_test</span><span class="p">()</span>
+<span class="c1">#     test = remote_web_test()</span>
+<span class="c1">#     test = remote_web_test2()</span>
+
+    <span class="k">if</span> <span class="n">test</span><span class="o">.</span><span class="n">is_server_running</span><span class="p">:</span>
+        <span class="n">test</span><span class="o">.</span><span class="n">run_model_case</span><span class="p">(</span><span class="n">case_detail</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Rock4 WebTest模型及API</a><ul>
+<li><a class="reference internal" href="#webtest-actions-api">1 WebTest Actions API</a></li>
+<li><a class="reference internal" href="#webtest">2 WebTest 模型</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="rock4.PcWpfTest用法.html" title="previous chapter">Rock4.PcWpfTest模型及API</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/rock4/rock4.WebTest用法.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, 罗科峰 lkf20031988@163.com.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/rock4/rock4.WebTest用法.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

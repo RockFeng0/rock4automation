@@ -1,0 +1,531 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Rock4.PadTest模型及API &#8212; Rock4 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rock4.PcMfcTest模型及API" href="rock4.PcMfcTest用法.html" />
+    <link rel="prev" title="Rock4.PacketTest模型及API" href="rock4.PacketTest用法.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rock4-padtestapi">
+<h1>Rock4.PadTest模型及API<a class="headerlink" href="#rock4-padtestapi" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="padtest-actions-api">
+<h2>1 PadTest Actions API<a class="headerlink" href="#padtest-actions-api" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p class="first">全局参数</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="23%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数名</th>
+<th class="head">描述</th>
+<th class="head">值或类型</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>by</td>
+<td>指定的寻找类型</td>
+<td>css/id/name/class/tagname/xpath/link/plink</td>
+</tr>
+<tr class="row-odd"><td>value</td>
+<td>寻找类型的值</td>
+<td>字符串</td>
+</tr>
+<tr class="row-even"><td>index</td>
+<td>索引,默认0</td>
+<td>数字</td>
+</tr>
+<tr class="row-odd"><td>timeout</td>
+<td>超时,默认10秒</td>
+<td>数字</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p class="first">移动设备操作(Actions API)</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="25%" />
+<col width="12%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Actions API</th>
+<th class="head">参数</th>
+<th class="head">返回值</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Back</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>后退</td>
+</tr>
+<tr class="row-odd"><td>CloseApp</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>关闭应用</td>
+</tr>
+<tr class="row-even"><td>Keyevent</td>
+<td>key_code_name</td>
+<td>&#160;</td>
+<td>发送指定的键盘事件</td>
+</tr>
+<tr class="row-odd"><td>LaunchApp</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>启动应用</td>
+</tr>
+<tr class="row-even"><td>QuitApp</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>退出应用，清理session</td>
+</tr>
+<tr class="row-odd"><td>NavigateTo</td>
+<td>package,activity</td>
+<td>&#160;</td>
+<td>导航至指定package的activity</td>
+</tr>
+<tr class="row-even"><td>Shake</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>振动</td>
+</tr>
+<tr class="row-odd"><td>SwipeDown</td>
+<td>times</td>
+<td>&#160;</td>
+<td>向下翻页times次</td>
+</tr>
+<tr class="row-even"><td>SwipeLeft</td>
+<td>times</td>
+<td>&#160;</td>
+<td>向左翻页times次</td>
+</tr>
+<tr class="row-odd"><td>SwipeRight</td>
+<td>times</td>
+<td>&#160;</td>
+<td>向右翻页times次</td>
+</tr>
+<tr class="row-even"><td>SwipeUp</td>
+<td>times</td>
+<td>&#160;</td>
+<td>向上翻页times次</td>
+</tr>
+<tr class="row-odd"><td>SwitchToContext</td>
+<td>context_name</td>
+<td>&#160;</td>
+<td>切换至指定的上下文</td>
+</tr>
+<tr class="row-even"><td>SwitchToDefaultContext</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>切换至默认的上下文</td>
+</tr>
+<tr class="row-odd"><td>BackgroundApp</td>
+<td>seconds</td>
+<td>&#160;</td>
+<td>(模型不适用)
+后台运行应用seconds</td>
+</tr>
+<tr class="row-even"><td>Forward</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>(模型不适用) 前进</td>
+</tr>
+<tr class="row-odd"><td>GetAppString</td>
+<td>&#160;</td>
+<td>String</td>
+<td>(模型不适用) 获取AppString</td>
+</tr>
+<tr class="row-even"><td>GetCurrentActivity</td>
+<td>&#160;</td>
+<td>String</td>
+<td>(模型不适用) 获取当前activity</td>
+</tr>
+<tr class="row-odd"><td>GetCurrentContext</td>
+<td>&#160;</td>
+<td>String</td>
+<td>(模型不适用) 获取当前上下文</td>
+</tr>
+<tr class="row-even"><td>GetCurrentContexts</td>
+<td>&#160;</td>
+<td>String</td>
+<td>(模型不适用) 获取所有上下文</td>
+</tr>
+<tr class="row-odd"><td>Init</td>
+<td>executor
+desired_capabilities
+browser_profile=None
+proxy=None
+keep_alive=False
+server_path=None
+apk_path=None</td>
+<td>&#160;</td>
+<td>(模型不适用) 初始化Pad测试
+executor为appium或selendroid
+desired_capabilities默认None
+server_path为appium根路径
+apk_path为待测apk的路径
+(冗余过多,不建议使用)</td>
+</tr>
+<tr class="row-even"><td>IsAppInstalled</td>
+<td>app_package</td>
+<td>True/False</td>
+<td>(模型不适用) 是否安装app</td>
+</tr>
+<tr class="row-odd"><td>LaunchApp</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>(模型不适用) todo</td>
+</tr>
+<tr class="row-even"><td>Lock</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>(模型不适用) 锁屏</td>
+</tr>
+<tr class="row-odd"><td>OpenNotifications</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>(模型不适用) 打开消息通知</td>
+</tr>
+<tr class="row-even"><td>RemoveApp</td>
+<td>app_package</td>
+<td>&#160;</td>
+<td>(模型不适用) 卸载app</td>
+</tr>
+<tr class="row-odd"><td>Reset</td>
+<td>app_package</td>
+<td>&#160;</td>
+<td>(模型不适用) todo</td>
+</tr>
+<tr class="row-even"><td>Swipe</td>
+<td>x1,y1,x2,y2,
+duration=None</td>
+<td>&#160;</td>
+<td>(模型不适用) 模拟滑动,从x1,y1
+滑动到x2,y2,持续duration时间</td>
+</tr>
+<tr class="row-odd"><td>Tap</td>
+<td>positions,
+duration=None</td>
+<td>&#160;</td>
+<td>(模型不适用) 模拟点击
+点击positons,持续duration时间</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>页面UI操作(Actions API)</dt>
+<dd><p class="first">带有【元素】标记的，要配合全局参数使用</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="26%" />
+<col width="25%" />
+<col width="13%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Actions API</th>
+<th class="head">参数</th>
+<th class="head">返回值</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Click</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>点击【元素】</td>
+</tr>
+<tr class="row-odd"><td>PressAndHold</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>按住【元素】</td>
+</tr>
+<tr class="row-even"><td>LongPress</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>长按【元素】</td>
+</tr>
+<tr class="row-odd"><td>GetFocus</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>获取并设置焦点至元素【元素】</td>
+</tr>
+<tr class="row-even"><td>IsEnabled</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否启用【元素】</td>
+</tr>
+<tr class="row-odd"><td>IsExist</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否存在【元素】</td>
+</tr>
+<tr class="row-even"><td>IsVisible</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>是否可见【元素】</td>
+</tr>
+<tr class="row-odd"><td>MouseOver</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>鼠标悬浮至元素【元素】</td>
+</tr>
+<tr class="row-even"><td>MoveTo</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>拖拽至【元素】
+一般是：按住，再拖，再释放</td>
+</tr>
+<tr class="row-odd"><td>ReleasePress</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>释放元素【元素】</td>
+</tr>
+<tr class="row-even"><td>MultiDraw</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>绘画</td>
+</tr>
+<tr class="row-odd"><td>SetVar</td>
+<td>name,value</td>
+<td>&#160;</td>
+<td>设置变量</td>
+</tr>
+<tr class="row-even"><td>TimeSleep</td>
+<td>seconds</td>
+<td>&#160;</td>
+<td>睡眠</td>
+</tr>
+<tr class="row-odd"><td>TypeIn</td>
+<td>text</td>
+<td>&#160;</td>
+<td>输入文本【元素】</td>
+</tr>
+<tr class="row-even"><td>Wait</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>依据超时时间,
+等待元素存在【元素】</td>
+</tr>
+<tr class="row-odd"><td>WaitForAppearing</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>依据超时时间,
+等待出现【元素】</td>
+</tr>
+<tr class="row-even"><td>WaitForDisappearing</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>依据超时时间,
+等待消失【元素】</td>
+</tr>
+<tr class="row-odd"><td>WaitForVisible</td>
+<td>&#160;</td>
+<td>True/False</td>
+<td>依据超时时间,
+等待可见【元素】</td>
+</tr>
+<tr class="row-even"><td>ScrollDown</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>向下滚动</td>
+</tr>
+<tr class="row-odd"><td>ScrollUp</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>向上滚动</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</li>
+<li><p class="first">示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4.softtest.pad.uiappium.actions</span> <span class="k">import</span> <span class="n">MobileApp</span><span class="p">,</span><span class="n">MobileElement</span>
+<span class="n">app_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\python\app-autoApp\demoProject\apps\ApiDemos&#39;</span>
+<span class="n">PATH</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app_path</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">desired_capabilities</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">desired_capabilities</span><span class="p">[</span><span class="s1">&#39;platformName&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Android&#39;</span>
+<span class="n">desired_capabilities</span><span class="p">[</span><span class="s1">&#39;platformVersion&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;4.4.2&#39;</span>
+<span class="n">desired_capabilities</span><span class="p">[</span><span class="s1">&#39;deviceName&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;device&#39;</span>
+<span class="n">desired_capabilities</span><span class="p">[</span><span class="s1">&#39;app&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PATH</span><span class="p">(</span><span class="s2">&quot;ApiDemos-debug.apk&quot;</span><span class="p">)</span>
+<span class="c1">#desired_capabilities[&#39;appPackage&#39;] = &#39;io.appium.android.apis&#39;</span>
+<span class="c1">#desired_capabilities[&#39;appActivity&#39;] = &#39;.ApiDemos&#39;</span>
+
+
+<span class="c1"># Initial connection</span>
+<span class="n">MobileApp</span><span class="o">.</span><span class="n">Init</span><span class="p">(</span><span class="s2">&quot;appium&quot;</span><span class="p">,</span> <span class="n">desired_capabilities</span><span class="p">,</span> <span class="n">server_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;E:\android-sdk\Appium&#39;</span><span class="p">)</span>
+
+<span class="c1">#  Start activity</span>
+<span class="n">MobileApp</span><span class="o">.</span><span class="n">NavigateTo</span><span class="p">(</span><span class="s2">&quot;io.appium.android.apis&quot;</span><span class="p">,</span> <span class="s2">&quot;.view.DragAndDropDemo&quot;</span><span class="p">)</span>
+
+<span class="c1">#</span>
+<span class="p">(</span><span class="n">MobileElement</span><span class="o">.</span><span class="n">by</span><span class="p">,</span><span class="n">MobileElement</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span><span class="s2">&quot;io.appium.android.apis:id/drag_dot_3&quot;</span><span class="p">)</span>
+<span class="n">MobileElement</span><span class="o">.</span><span class="n">PressAndHold</span><span class="p">()</span>
+<span class="p">(</span><span class="n">MobileElement</span><span class="o">.</span><span class="n">by</span><span class="p">,</span><span class="n">MobileElement</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span><span class="s2">&quot;io.appium.android.apis:id/drag_dot_2&quot;</span><span class="p">)</span>
+<span class="n">MobileElement</span><span class="o">.</span><span class="n">MoveTo</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">MobileElement</span><span class="o">.</span><span class="n">ReleasePress</span><span class="p">()</span>
+
+<span class="n">MobileApp</span><span class="o">.</span><span class="n">NavigateTo</span><span class="p">(</span><span class="s2">&quot;io.appium.android.apis&quot;</span><span class="p">,</span> <span class="s2">&quot;.ApiDemos&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">MobileElement</span><span class="o">.</span><span class="n">by</span><span class="p">,</span><span class="n">MobileElement</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span><span class="s2">&quot;android:id/text1&quot;</span><span class="p">)</span>
+<span class="n">MobileElement</span><span class="o">.</span><span class="n">ScrollDown</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="padtest">
+<h2>2 PadTest 模型<a class="headerlink" href="#padtest" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">yaml实例,源码:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4</span> <span class="k">import</span> <span class="n">shoot</span><span class="p">,</span><span class="n">target</span><span class="p">,</span><span class="n">PadTest</span>
+
+<span class="n">target</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">proj_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\env\testProject&#39;</span><span class="p">,</span> <span class="n">initdirs</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">case_detail</span><span class="p">(</span><span class="n">devdriver</span><span class="p">):</span>
+    <span class="n">shoot</span><span class="p">(</span><span class="n">devdriver</span> <span class="o">=</span> <span class="n">devdriver</span><span class="p">,</span><span class="n">modelfile</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\env\testProject\testcase\pad_yaml_usage.yaml&#39;</span><span class="p">,</span><span class="n">modeltype</span><span class="o">=</span><span class="s2">&quot;pad&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">PadTest</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;D:\auto\python\app-autoApp\demoProject\apps\ApiDemos\ApiDemos-debug.apk&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">test</span><span class="o">.</span><span class="n">is_server_running</span><span class="p">:</span>
+        <span class="n">test</span><span class="o">.</span><span class="n">run_model_case</span><span class="p">(</span><span class="n">case_detail</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">excel实例,源码:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rock4.common</span> <span class="k">import</span> <span class="n">p_common</span>
+<span class="kn">from</span> <span class="nn">rock4.softtest.common.ModelEntrance</span> <span class="k">import</span> <span class="n">test_start</span>
+<span class="kn">from</span> <span class="nn">rock4.softtest.pad.uiappium.TestDriver</span> <span class="k">import</span> <span class="n">TestDriver</span>
+
+<span class="n">p_common</span><span class="o">.</span><span class="n">init_project_env</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">proj_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\env\testProject&#39;</span><span class="p">,</span> <span class="n">initdirs</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">case_detail</span><span class="p">(</span><span class="n">devdriver</span><span class="p">):</span>
+    <span class="n">test_start</span><span class="p">(</span><span class="n">devdriver</span> <span class="o">=</span> <span class="n">devdriver</span><span class="p">,</span><span class="n">modelfile</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;D:\auto\env\testProject\testcase\pad_excel_usage.xlsx&#39;</span><span class="p">,</span><span class="n">modeltype</span><span class="o">=</span><span class="s2">&quot;pad&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="n">TestDriver</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;D:\auto\python\app-autoApp\demoProject\apps\ApiDemos\ApiDemos-debug.apk&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">test</span><span class="o">.</span><span class="n">is_server_running</span><span class="p">:</span>
+        <span class="n">test</span><span class="o">.</span><span class="n">run_model_case</span><span class="p">(</span><span class="n">case_detail</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Rock4.PadTest模型及API</a><ul>
+<li><a class="reference internal" href="#padtest-actions-api">1 PadTest Actions API</a></li>
+<li><a class="reference internal" href="#padtest">2 PadTest 模型</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="rock4.PacketTest用法.html" title="previous chapter">Rock4.PacketTest模型及API</a></li>
+      <li>Next: <a href="rock4.PcMfcTest用法.html" title="next chapter">Rock4.PcMfcTest模型及API</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/rock4/rock4.PadTest用法.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, 罗科峰 lkf20031988@163.com.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/rock4/rock4.PadTest用法.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
