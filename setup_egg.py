@@ -59,7 +59,7 @@ setup(
         author_email = "lkf20031988@163.com",
         description = "for automation test",
         long_description = "UI web test or UI pc test or web service test or android test",
-        license = "Apache 2.0",
+        license = "MIT",
         keywords = "rock4",
         url = "",
     )

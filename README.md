@@ -13,8 +13,11 @@
 
 
 * * *
-# 文档完善中，敬请期待
+# 安装步骤(目前，仅Windows)
+- 下载 [autoitpy_v1.0.0](https://github.com/RockFeng0/autoit-v3-py/releases)并安装
+- 使用命令 python setup.py install, 安装rock4
 
+**文档完善中，敬请期待...**
 
 
 
