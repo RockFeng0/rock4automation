@@ -11,13 +11,23 @@
 
 > 下载下来后，您可以选择删除一些您使用不到的模块，因为它不会影响其他框架的运行，路径: rock4/softtest/...
 
-
 * * *
-# 安装步骤(目前，仅Windows)
-- 下载 [autoitpy_v1.0.0](https://github.com/RockFeng0/autoit-v3-py/releases)并安装
-- 使用命令 python setup.py install, 安装rock4
 
-**文档完善中，敬请期待...**
+# Rock4用法简介 
+
+
+## 安装（目前，仅Windows）
+    1. 下载 [autoitpy_v1.0.0](https://github.com/RockFeng0/autoit-v3-py/releases)并安装
+    2. 下载rock4的zip包，解压后执行: python setup_egg.py install
+
+        
+
+## 入门指南
+
+    文档编写中，敬请期待。。。
+
+## 进阶指南
+    文档编写中，敬请期待。。。        
 
 
 

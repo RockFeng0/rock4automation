@@ -1,2 +1,8 @@
 eclipse.preferences.version=1
+encoding//demo/usage_webdriver_local.py=utf-8
+encoding//demo/usage_webdriver_remote.py=utf-8
+encoding//rock4/softtest/web/SeleniumHatch.py=utf-8
+encoding//rock4/softtest/web/SeleniumJar.py=utf-8
+encoding//rock4/softtest/web/TestDriver.py=utf-8
+encoding//rock4/softtest/web/actions.py=utf-8
 encoding/setup_egg.py=utf-8
