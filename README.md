@@ -17,8 +17,8 @@
 
 
 ## 安装（目前，仅Windows）
-    1. 下载 [autoitpy_v1.0.0](https://github.com/RockFeng0/autoit-v3-py/releases)并安装
-    2. 下载rock4的zip包，解压后执行: python setup_egg.py install
+- 下载 [autoitpy_v1.0.0](https://github.com/RockFeng0/autoit-v3-py/releases)并安装
+- 下载rock4的zip包，解压后执行: python setup_egg.py install
 
         
 
