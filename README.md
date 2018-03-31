@@ -15,6 +15,9 @@
 
 # Rock4用法简介 
 
+## Rock4工作原理
+
+![](https://github.com/RockFeng0/rock4automation/raw/master/doc/principle.png)
 
 ## 安装（目前，仅Windows）
 - 下载 [autoitpy_v1.0.0](https://github.com/RockFeng0/autoit-v3-py/releases)并安装
