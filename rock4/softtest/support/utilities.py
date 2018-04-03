@@ -22,11 +22,15 @@ import os
 
 ### utility path in support 
 def get_utility_path(name):
-    return os.path.join(os.path.dirname(os.path.realpath(__file__)), name)
+    '''工具集的路径，有两种方式
+    1.设置环境变量 rock4_home
+    2.将工具集，放在utilities.py同路径下，但是这样的话，整个工程的大小，就会很大
+    '''
+    return os.path.join(os.getenv("rock4_home", os.path.dirname(os.path.realpath(__file__))),name)
 
 ### java
 def get_java_path():
-    java_exe = os.popen(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'java', 'find_java.exe')).read()
+    java_exe = os.popen(os.path.join(get_utility_path("java"), 'find_java.exe')).read()
     return java_exe
 
 ### Android

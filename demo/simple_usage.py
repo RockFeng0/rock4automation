@@ -28,7 +28,7 @@ def remote_test():
     grid.start_hub(block = False)
     grid.start_node(5555, block=False)
     
-    test = WebTest()
+    test = WebTest(browsers = ["chrome"])
     drivers = test.find_drivers()
     driver = drivers.items()[0][1]    
     driver.get("http://www.baidu.com")
@@ -38,7 +38,7 @@ def remote_test():
     
 # local
 def local_test():
-    test = WebTest()
+    test = WebTest(browser = "chrome")
     driver = test.find_driver()
     driver.get("http://www.baidu.com")
     driver.quit()
@@ -127,5 +127,6 @@ def shoot_packet_test():
     shoot(devdriver = devdriver,modelfile = r'D:\auto\buffer\testProject\testcase\api_excel_usage.xlsx',modeltype="api")
 
 
-
+if __name__ == "__main__":
+    remote_test()
     
