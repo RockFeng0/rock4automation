@@ -8,7 +8,7 @@ v1.0    Original version to use
 ********************************************************************
     @AUTHOR:  Administrator-Bruce Luo(罗科峰)
     MAIL:    lkf20031988@163.com
-    RCS:      setup,v 1.0 2017年3月11日
+    RCS:      setup,v 2.1.0 2018年4月3日
     FROM:   2017年3月11日
 ********************************************************************
 
@@ -19,30 +19,30 @@ UI and Web Http automation frame for python.
 '''
 import sys,zipfile,os
 from setuptools import setup,find_packages
-VERSION = "2.0.0"
+VERSION = "2.1.0"
 
 if sys.argv[1] == "bdist_egg":
-    p = os.path.dirname(sys.argv[0])
-    dst = os.path.join(p,r'rock4\softtest\support\appiumroot.zip')
-    if not os.path.isfile(dst):
-        src = os.path.join(p,r'rock4\softtest\support\appiumroot')
-        zipf = zipfile.ZipFile(dst, 'w', zipfile.zlib.DEFLATED)
-        pre_len = len(os.path.dirname(src))
-        for parent, dirnames, filenames in os.walk(src):
-            for filename in filenames:
-                pathfile = os.path.join(parent, filename)
-                arcname = pathfile[pre_len:].strip(os.path.sep);#相对路径
-                zipf.write(pathfile, arcname)
-        zipf.close()
+#     p = os.path.dirname(sys.argv[0])
+#     dst = os.path.join(p,r'rock4\softtest\support\appiumroot.zip')
+#     if not os.path.isfile(dst):
+#         src = os.path.join(p,r'rock4\softtest\support\appiumroot')
+#         zipf = zipfile.ZipFile(dst, 'w', zipfile.zlib.DEFLATED)
+#         pre_len = len(os.path.dirname(src))
+#         for parent, dirnames, filenames in os.walk(src):
+#             for filename in filenames:
+#                 pathfile = os.path.join(parent, filename)
+#                 arcname = pathfile[pre_len:].strip(os.path.sep);#相对路径
+#                 zipf.write(pathfile, arcname)
+#         zipf.close()
+    print "rock4 egg"
 elif sys.argv[1] == "bdist_pyd":
     # 自定义的 bdist_pyd; 前提是，把生成的 distpyd_rock4 拷贝到 build/lib目录下，并且重命名为 rock4
     sys.argv[1] = "bdist_egg"
 
 setup(
         name = "rock4",
-        version=VERSION,
-        packages = ['rock4'],
-#         packages = find_packages(),      
+        version=VERSION,        
+        packages = find_packages(),      
 #         package_data = {
 #             "rock4.softtest.support" : [                
 #                 "android/*",
