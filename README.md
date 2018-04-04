@@ -15,8 +15,6 @@
 
 # 介绍
 
-* * *
-
 > Rock4 是一款面向客户端(B/S、C/S、Android移动端) 和 HTTP 协议的通用测试框架，只需编写维护一份 Excel/Yaml伪代码测试用例，即可实现自动化测试、性能测试、持续集成等多种测试需求。
 
 
@@ -35,10 +33,9 @@
 
 ![](https://github.com/RockFeng0/rock4automation/raw/master/doc/principle.png) 
  
- 
-# Rock4用法简介 
-
 * * *
+
+# Rock4用法简介 
 
 ## 安装说明（目前，仅Windows）
 - 下载 [autoitpy_v1.0.0](https://github.com/RockFeng0/autoit-v3-py/releases)并安装
