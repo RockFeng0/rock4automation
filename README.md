@@ -15,8 +15,6 @@
 
 # 介绍
 
-* * *
-
 > Rock4 是一款面向客户端(B/S、C/S、Android移动端) 和 HTTP 协议的通用测试框架，只需编写维护一份 Excel/Yaml伪代码测试用例，即可实现自动化测试、性能测试、持续集成等多种测试需求。
 
 
@@ -35,10 +33,22 @@
 
 ![](https://github.com/RockFeng0/rock4automation/raw/master/doc/principle.png) 
  
- 
-# Rock4用法简介 
+## 核心特性 
+- 继承优秀开源项目全部特性，轻松实现客户端(browser、WinForm/MFC/WPF、Android)的各种测试需求
+- 集成 Selenium Webdriver和Selenium Remote，轻松实现本地web自动化测试和分布式web测试
+- 集成Appium，实现有线/无线模式的分布式app自动化测试，最多上限支持20台设备同时测试, **此特性依据adb.exe的最大支持量**
+- 集成AutoItv3和Microsoft UI Automation API,实现支持客户端的本地自动化测试，主要客户端技术类型: MFC、WinForm、WPF
+- 集成Requests，轻松实现HTTP(s)协议的测试，无缝支持Locust性能测试框架，可实现分布式性能测试
+- 测试用例与代码进行了分离，支持EXCEL和Yaml的模型，组织测试数据，支持测试用例的复用、结构分层划分、功能模块划分等
+- 测试用例支持参数化、关键字驱动、数据驱动机制
+- 测试用例的执行拥有流程的控制，测试用例执行过程的失败，不会阻塞整体执行流程
+- 测试用例的执行方式，支持命令行(CommandLine)调用,可与 Jenkins等持续集成工具完美结合
+- 测试结果，以html报告的形式展示，简洁清晰，附带详尽统计信息、测试用例日志记录、步骤执行日志记录
+- 具有可扩展性，用例组织内在形式是标准的python dict，便于扩展实现B/S模式 Web的平台化或者C/S模式PC客户端化
 
 * * *
+
+# Rock4用法简介 
 
 ## 安装说明（目前，仅Windows）
 - 下载 [autoitpy_v1.0.0](https://github.com/RockFeng0/autoit-v3-py/releases)并安装
