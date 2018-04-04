@@ -13,16 +13,37 @@
 
 * * *
 
-# Rock4用法简介 
+# 介绍
 
+* * *
+
+> Rock4 是一款面向客户端(B/S、C/S、Android移动端) 和 HTTP 协议的通用测试框架，只需编写维护一份 Excel/Yaml伪代码测试用例，即可实现自动化测试、性能测试、持续集成等多种测试需求。
+
+
+## 设计理念
+
+- 采用优秀的开源项目，组成一个更贴近企业应用的项目，不重复造轮子，而是选择优秀的部件组装汽车.
+- 遵循目前的关键字驱动和数据驱动，再框架中融入企业中的最佳实践
+- 以最少的投入，产出更多的输出
+
+## 逻辑流程图
+
+![](https://github.com/RockFeng0/rock4automation/raw/master/doc/logic.png)
+ 
+ 
 ## Rock4工作原理
 
-![](https://github.com/RockFeng0/rock4automation/raw/master/doc/principle.png)
+![](https://github.com/RockFeng0/rock4automation/raw/master/doc/principle.png) 
+ 
+ 
+# Rock4用法简介 
 
-## 安装（目前，仅Windows）
+* * *
+
+## 安装说明（目前，仅Windows）
 - 下载 [autoitpy_v1.0.0](https://github.com/RockFeng0/autoit-v3-py/releases)并安装
 - 下载rock4的zip包，解压后执行: python setup_egg.py install
- 
+- 下载rock4-support-tools.zip，解压后，将该路径，添加为环境变量 ROCK4_HOME 
         
 
 ## 入门指南
