@@ -51,9 +51,15 @@
 # Rock4用法简介 
 
 ## 安装说明（目前，仅Windows）
-- 下载 [autoitpy_v1.0.0](https://github.com/RockFeng0/autoit-v3-py/releases)并安装
-- 下载rock4的zip包，解压后执行: python setup_egg.py install
-- 下载rock4-support-tools.zip，解压后，将该路径，添加为环境变量 ROCK4_HOME 
+
+Rock4 是一个基于 Python 开发的测试框架，运行在Windows系统平台上(因为集成了win32，winform和wpf的测试框架)
+
+Rock4 的开发环境为 Windows 7 + Python 2.7, 推荐使用Windows 7 + python2.7 的运行环境组合。
+
+安装步骤，如下：
+- 下载 [autoitpy_v1.0.0](https://github.com/RockFeng0/autoit-v3-py/releases)，解压后执行: python setup.py install
+- 下载[rock4的zip包](https://github.com/RockFeng0/rock4automation/releases)，解压后执行: python setup_egg.py install
+- 下载[rock4-support-tools.zip](https://github.com/RockFeng0/rock4automation/releases)，解压后，将该路径，添加为环境变量 ROCK4_HOME 
         
 
 ## 入门指南
