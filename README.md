@@ -64,10 +64,12 @@ Rock4 的开发环境为 Windows 7 + Python 2.7, 推荐使用Windows 7 + python2
 
 ## 入门指南
 
-    文档编写中，敬请期待。。。
+- [快速上手](http://rockfeng0.github.io/hello-world/2018/04/02/rock4_project_init.html)
+- [测试用例](http://rockfeng0.github.io/hello-world/2018/04/01/rock4_testcases.html)
 
 ## 进阶指南
-    文档编写中，敬请期待。。。       
+    
+- [高级特性](http://rockfeng0.github.io/hello-world/2018/03/31/rock4_module.html)
 
 
 
