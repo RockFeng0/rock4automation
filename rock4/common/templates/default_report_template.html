@@ -1,0 +1,135 @@
+
+    <META HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=utf8'>
+    <HTML>
+        <HEAD>
+            <TITLE>TestCase Execution - Custom Report</TITLE>
+            <STYLE>
+                .textfont {font-weight: normal; font-size: 12px; color: #000000; font-family: verdana, arial, helvetica, sans-serif }
+                .owner {width:100%; border-right: #6d7683 1px solid; border-top: #6d7683 1px solid; border-left: #6d7683 1px solid; border-bottom: #6d7683 1px solid; background-color: #a3a9b1; padding-top: 3px; padding-left: 3px; padding-right: 3px; padding-bottom: 10px; }
+                .product {color: white; font-size: 22px; font-family: Calibri, Arial, Helvetica, Geneva, Swiss, SunSans-Regular; background-color: #59A699; padding: 5px 10px; border-top: 5px solid #a9b2c5; border-right: 5px solid #a9b2c5; border-bottom: #293f6f; border-left: 5px solid #a9b2c5;}
+                .rest {color: white; font-size: 24px; font-family: Calibri, Arial, Helvetica, Geneva, Swiss, SunSans-Regular; background-color: white; padding: 10px; border-right: 5px solid #a9b2c5; border-bottom: 5px solid #a9b2c5; border-left: 5px solid #a9b2c5 }
+                .chl {font-size: 10px; font-weight: bold; background-color: #D9D1DF; padding-right: 5px; padding-left: 5px; width: 17%; height: 20px; border-bottom: 1px solid white }
+                a {color: #336 }
+                a:hover {color: #724e6d }
+                .ctext {font-size: 11px; padding-right: 5px; padding-left: 5px; width: 80%; height: 20px; border-bottom: 1px solid #eee }
+                .hl {color: #724e6d; font-size: 12px; font-weight: bold; background-color: white; height: 20px; border-bottom: 2px dotted #a9b2c5 }
+                .space {height: 10px;}
+                h3 {font-weight: bold; font-size: 11px; color: white; font-family: verdana, arial, helvetica, sans-serif;}
+                .tr_normal {font-size: 10px; font-weight: normal; background-color: #eee; padding-right: 5px; padding-left: 5px; height: 20px; border-bottom: 1px solid white;}
+                .tr_pass {font-size: 10px; font-weight: normal; background-color: #eee; padding-right: 5px; padding-left: 5px; height: 20px; border-bottom: 1px solid white;}
+                .tr_fail {font-size: 10px; font-weight: normal; background-color: #eee; padding-right: 5px; padding-left: 5px; height: 20px; border-bottom: 1px solid white; color: red;}
+            </STYLE>
+            <SCRIPT type="text/javascript">
+            function showAll(opt) {
+                tab = document.getElementsByClassName('textfont')[2]
+                tab.style.display = 'table'
+                trs = tab.getElementsByTagName("tr")
+                if (opt == "Summary") {
+                    tab.style.display = 'none'
+                } else if(opt == "All") {
+                    tab.style.display = 'table'
+                    for (i=1;i<trs.length;i++) {trs[i].style.display = 'table-row'}
+                } else if(opt == "Pass") {                
+                    for (i=1;i<trs.length;i++) {trs[i].style.display = 'none'}
+                    pass = document.getElementsByClassName("tr_pass")            
+                    for (i=0;i<pass.length;i++) {pass[i].parentNode.style.display = 'table-row'}
+                } else if(opt == "Fail") {
+                    for (i=1;i<trs.length;i++) {trs[i].style.display = 'none'}
+                    fail = document.getElementsByClassName("tr_fail")
+                    for (i=0;i<fail.length;i++) {fail[i].parentNode.style.display = 'table-row'}
+                }            
+            }
+            </SCRIPT>
+            <META content='MSHTML 6.00.2800.1106'>
+        </HEAD>
+        <body onload="showAll('{{ show_all }}')" leftmargin='0' marginheight='0' marginwidth='0' topmargin='0'>
+            <table width='100%' border='0' cellspacing='0' cellpadding='0'>
+                <tr>
+                    <td class='product'>Quality Center</td>
+                </tr>
+                <tr>
+                    <td class='rest'>
+                        <table class='space' width='100%' border='0' cellspacing='0' cellpadding='0'>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </table>                                                                        
+                        <table class='textfont' cellspacing='0' cellpadding='0' width='100%' align='center' border='0'>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <table class='textfont' cellspacing='0' cellpadding='0' width='100%' align='center' border='0'>
+                                            <tbody>
+                                                <tr>
+                                                    <td class='chl' width='20%'>Project Name</td>
+                                                    <td class='ctext'>{{ project_name }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='chl' width='20%'>TestSet</td>
+                                                    <td class='ctext'>{{ module_name }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='chl' width='20%'>Started</td>
+                                                    <td class='ctext'>{{ start_time }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='chl' width='20%'>Finished</td>
+                                                    <td class='ctext'>{{ end_time }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='chl' width='20%'>Duration</td>
+                                                    <td class='ctext'>{{ duration_seconds }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='chl' width='20%'>TotalCases</td>
+                                                    <td class='ctext' style="text-decoration:underline" onclick="showAll('All')"><span style="cursor:pointer;">{{ total_case_num }}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='chl' width='20%'>PassCases</td>
+                                                    <td class='ctext' style="text-decoration:underline" onclick="showAll('Pass')"><span style="cursor:pointer;">{{ pass_cases_num }}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='chl' width='20%'>FailCases</td>
+                                                    <td class='ctext' style="text-decoration:underline" onclick="showAll('Fail')"><span style="cursor:pointer;">{{ fail_cases_num }}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='chl' width='20%'>HomePage</td>
+                                                    <td class='ctext'><a target='_blank' href='{{ home_page }}'>{{ home_page }}</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class='space'></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class='textfont' cellspacing='0' cellpadding='0' width='100%' align='center' border='0'>
+                            <tbody>
+                                <tr>
+									<td style='font-size: 10px; font-weight: bold; background-color: #D9D1DF; padding-right: 5px; padding-left: 5px; height: 20px; border-bottom: 1px solid white;'>CaseName</td>
+									<td style='font-size: 10px; font-weight: bold; background-color: #D9D1DF; padding-right: 5px; padding-left: 5px; height: 20px; border-bottom: 1px solid white;'>Status</td>
+									<td style='font-size: 10px; font-weight: bold; background-color: #D9D1DF; padding-right: 5px; padding-left: 5px; height: 20px; border-bottom: 1px solid white;'>RespTester</td>
+									<td style='font-size: 10px; font-weight: bold; background-color: #D9D1DF; padding-right: 5px; padding-left: 5px; height: 20px; border-bottom: 1px solid white;'>Tester</td>
+									<td style='font-size: 10px; font-weight: bold; background-color: #D9D1DF; padding-right: 5px; padding-left: 5px; height: 20px; border-bottom: 1px solid white;'>ExecDate</td>
+									<td style='font-size: 10px; font-weight: bold; background-color: #D9D1DF; padding-right: 5px; padding-left: 5px; height: 20px; border-bottom: 1px solid white;'>ExecTime</td>
+								</tr>
+							    {% for detail in details %}
+								<tr>
+								    <td class='tr_normal'><a target='_blank' href='{{ detail["linkurl"] }}'>{{ detail.case_name }}</a></td>
+								    <td class='{{ detail["c_style"] }}'>{{ detail.status }}</td>
+								    <td class='tr_normal'>{{ detail.resp_tester }}</td>
+								    <td class='tr_normal'>{{ detail.tester }}</td>
+								    <td class='tr_normal'>{{ detail.exec_date }}</td>
+								    <td class='tr_normal'>{{ detailexec_time }}</td>
+								</tr>
+							    {% endfor %}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </body>
+    </HTML>
+    
